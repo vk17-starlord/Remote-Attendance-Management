@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import WebcamCapture from "./components/webcam/WebcamCapture";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
-
 function App() {
+
   return (
     <div className="App">
             
@@ -15,7 +16,8 @@ function App() {
       <Route path='/Register' element={<AdminLogin/>} ></Route>
       <Route path='/Register' element={<AdminDashboard/>} ></Route>
       <Route path='/Dashboard' element={<Dashboard/>} ></Route>
- 
+      <Route path='/faceauth' element={<WebcamCapture/>} ></Route>
+
        </Routes>
      </BrowserRouter> 
     </div>

@@ -1,24 +1,10 @@
-import { Button } from '@mui/material';
-import { Container, Stack } from '@mui/system';
+
 import React, { useEffect, useState } from 'react'
 import Webcam from "react-webcam";
 import "./Webcam.css"
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+
 import {useNavigate} from 'react-router-dom'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: '#fff',
-  boxShadow: 24,
-  p: 4,
-};
 
 
 const videoConstraints = {
@@ -61,7 +47,22 @@ function WebcamCapture() {
   },[image,webcamRef])
 
   return (
-   <div className="container">
+   <div className="w-full flex justify-center items-center flex-col min-h-screen">
+
+{
+  open ?
+     
+  <div className={`modal fixed w-[40vw] p-5 min-h-[70vh] bg-white rounded-xl shadow-md`}>
+
+  <img src={image} className="w-full object-cover rounded-md"  alt="" />
+  <div className="grid grid-cols-2 gap-5 w-full">
+  <button onClick={()=>{navigate('/dashboard')}} className='w-full px-10  my-5 text-[#4CAF50] py-2 rounded-md  bg-[#E7FFE8]'> Accept </button>
+  <button onClick={()=>{ handleClose() }} className='w-full px-10 rounded-md py-2 bg-[#FFF6F8] text-[#F50057] my-5'>Click Again ! </button>
+  </div>
+ </div>
+ 
+ :null
+}
 
   <Webcam
         audio={false}
@@ -72,9 +73,9 @@ function WebcamCapture() {
         videoConstraints={videoConstraints}
       />
 
-  <Button onClick={()=>{
+  <button className=' px-10 py-2 rounded-md my-5  bg-[#304FFE] text-white ' onClick={()=>{
     capture()
-  }} variant="contained">Verify Face <EmojiEmotionsIcon /> </Button>
+  }} >Verify Face </button>
   
 
 
