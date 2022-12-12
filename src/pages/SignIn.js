@@ -1,9 +1,11 @@
 import React from 'react'
 import { Formik } from "formik";
 import * as Yup from "yup";
-
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+
+    const navigate = useNavigate()
 
     const schema = Yup.object().shape({
         EmployeeID: Yup.string()
@@ -15,14 +17,15 @@ function SignIn() {
       });
 
   return (
-    <div className='w-full min-h-screen flex justify-center items-center '>
+    <div className='w-full flex min-h-scree justify-center items-center '>
            
            <Formik
         validationSchema={schema}
         initialValues={{ EmployeeID: "", Password: "" }}
         onSubmit={(values) => {
           // Alert the input values of the form that we filled
-          alert(JSON.stringify(values));
+         navigate("/faceauth");
+
         }}
       >
         {({
