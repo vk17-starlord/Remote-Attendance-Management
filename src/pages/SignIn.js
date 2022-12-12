@@ -7,14 +7,14 @@ function SignIn() {
 
     const navigate = useNavigate()
 
-    const schema = Yup.object().shape({
-        EmployeeID: Yup.string()
-          .required("Employee ID is a required field")
-,
-        Password: Yup.string()
-          .required("Password is a required field")
-          .min(8, "Password must be at least 8 characters"),
-      });
+  const schema = Yup.object().shape({
+    EmployeeID: Yup.string()
+      .required("Employee ID is a required field")
+    ,
+    Password: Yup.string()
+      .required("Password is a required field")
+      .min(8, "Password must be at least 8 characters"),
+  });
 
   return (
     <div className='w-full flex min-h-scree justify-center items-center '>
@@ -64,13 +64,15 @@ function SignIn() {
 </div>
                    
 
-                <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium'  type="submit  ">Login To My Account</button>
-              </form>
-            </div>
-          </div>
-        )}
-      </Formik>
-         
+                    <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login To My Account</button>
+                  </form>
+                </div>
+              </div>
+            )}
+          </Formik>
+        </div>
+      </div>
+
 
     </div>
   )
