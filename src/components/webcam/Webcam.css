@@ -1,0 +1,54 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.image{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.flex{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
+}
+
+.reject
+{
+    width: 100%;
+    cursor: pointer;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 6px;
+    color: #F50057;
+    background-color: #FFF6F8;
+    
+}
+
+.reject:hover{
+    color: #FFF6F8;
+    background-color: #F50057;
+}
+
+.accept
+{
+    width: 100%;
+
+    cursor: pointer;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 6px;
+    color: #4CAF50;
+    background-color: #E7FFE8;
+}
+
+.accept:hover{
+    color: #E7FFE8;
+    background-color: #4CAF50;
+}
