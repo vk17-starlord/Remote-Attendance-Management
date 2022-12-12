@@ -13,7 +13,7 @@ function SignIn() {
       .required("Password is a required field")
       .min(8, "Password must be at least 8 characters"),
   });
-
+  const navigate = useNavigate()
   return (
     <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
 
@@ -51,7 +51,7 @@ function SignIn() {
             initialValues={{ EmployeeID: "", Password: "" }}
             onSubmit={(values) => {
               // Alert the input values of the form that we filled
-              alert(JSON.stringify(values));
+              navigate('/faceauth')
             }}
           >
             {({
@@ -73,7 +73,7 @@ function SignIn() {
                     <div class="mb-6">
                       <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
                       <input name='EmployeeID' onChange={handleChange}
-                        onBlur={handleBlur} value={values.EmployeeID} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Success input" />
+                        onBlur={handleBlur} value={values.EmployeeID} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
                       <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.EmployeeID && touched.EmployeeID && errors.EmployeeID}
 
@@ -83,14 +83,12 @@ function SignIn() {
                     <div class="mb-6">
                       <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter Password </label>
                       <input name='Password' onChange={handleChange}
-                        onBlur={handleBlur} value={values.Password} type="password" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Success input" />
+                        onBlur={handleBlur} value={values.Password} type="password" 
+                        id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
                       <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.Password && touched.Password && errors.Password}
                       </p>
                     </div>
-
-
-
                     <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login To My Account</button>
                   </form>
                 </div>

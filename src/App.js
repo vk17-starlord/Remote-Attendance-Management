@@ -13,6 +13,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
+        <Route path='/faceauth' element={<WebcamCapture />} ></Route>
 
           <Route path='/' element={<SignIn />} ></Route>
           <Route path='/Register' element={<AdminLogin />} ></Route>
