@@ -36,8 +36,8 @@ const AdminLoginForm = () => {
                     handleBlur,
                     handleSubmit,
                 }) => (
-                    <div className="login w-96">
-                        <h1 className='font-bold mx-auto text-center my-10 text-2xl'>Login </h1>
+                    <div className="login w-96 my-10 bg-white border border-gray-200 rounded-xl shadow-md  p-10 ">
+                        <h1 className='font-bold mx-auto text-center my-10 text-2xl'>Admin Login </h1>
                         <div className="form ">
                             {/* Passing handleSubmit parameter tohtml form onSubmit property */}
                             <form noValidate onSubmit={handleSubmit}>
@@ -45,9 +45,9 @@ const AdminLoginForm = () => {
                                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
 
                                 <div class="mb-6">
-                                    <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
+                                    <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter Admin ID</label>
                                     <input name='EmployeeID' onChange={handleChange}
-                                        onBlur={handleBlur} value={values.EmployeeID} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Employee ID" />
+                                        onBlur={handleBlur} value={values.EmployeeID} type="text" id="success" class=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Admin ID" />
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                                         {errors.EmployeeID && touched.EmployeeID && errors.EmployeeID}
 
@@ -57,12 +57,12 @@ const AdminLoginForm = () => {
                                 <div class="mb-6">
                                     <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter Password </label>
                                     <input name='Password' onChange={handleChange}
-                                        onBlur={handleBlur} value={values.Password} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Password" />
+                                        onBlur={handleBlur} value={values.Password} type="password" id="success" class=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Password" />
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">
                                         {errors.Password && touched.Password && errors.Password}
                                     </p>
                                 </div>
-                                <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login To My Account</button>
+                                <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login </button>
                             </form>
                         </div>
                     </div>

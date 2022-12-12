@@ -60,7 +60,7 @@ const CreateEmployeForm = () => {
           handleBlur,
           handleSubmit,
         }) => (
-          <div className="login">
+          <div className="login my-10 bg-white border border-gray-200 rounded-xl shadow-md  p-10">
             <h1 className='font-bold mx-auto text-center my-10 text-2xl w-96'>Create Employee</h1>
             <div className="form ">
               {/* Passing handleSubmit parameter tohtml form onSubmit property */}
@@ -71,7 +71,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's ID</label>
                   <input name='EmpId' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpId} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="JohnDoe123" />
+                    onBlur={handleBlur} value={values.EmpId} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="JohnDoe123" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpId
                       && touched.EmpId
@@ -82,7 +82,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6 ">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Name </label>
                   <input name='EmpName' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpName} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="John Doe" />
+                    onBlur={handleBlur} value={values.EmpName} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="John Doe" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpName && touched.EmpName && errors.EmpName}
                   </p>
@@ -90,7 +90,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Contact </label>
                   <input name='EmpContact' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpContact} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="9112233322" />
+                    onBlur={handleBlur} value={values.EmpContact} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="9112233322" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpContact && touched.EmpContact && errors.EmpContact}
                   </p>
@@ -98,7 +98,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Position </label>
                   <input name='EmpPosition' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpPosition} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="SDE-1" />
+                    onBlur={handleBlur} value={values.EmpPosition} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="SDE-1" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpPosition && touched.EmpPosition && errors.EmpPosition}
                   </p>
@@ -106,7 +106,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Salary </label>
                   <input name='EmpSalary' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpSalary} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="40000" />
+                    onBlur={handleBlur} value={values.EmpSalary} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="40000" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpSalary && touched.EmpSalary && errors.EmpSalary}
                   </p>
@@ -114,7 +114,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label for="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Join Date </label>
                   <input name='EmpJoinDate' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpJoinDate} type="date" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="2021-08-01" />
+                    onBlur={handleBlur} value={values.EmpJoinDate} type="date" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="2021-08-01" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpJoinDate && touched.EmpJoinDate && errors.EmpJoinDate}
                   </p>
