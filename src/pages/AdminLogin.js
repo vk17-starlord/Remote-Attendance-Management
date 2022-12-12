@@ -1,8 +1,11 @@
 import React from 'react'
+import AdminLoginForm from '../components/AdminLoginForm'
 
 function AdminLogin() {
   return (
-    <div>AdminLogin</div>
+    <div className='w-full min-h-screen flex justify-center items-center '>
+      <AdminLoginForm />
+    </div>
   )
 }
 
