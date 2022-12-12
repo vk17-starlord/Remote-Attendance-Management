@@ -13,7 +13,7 @@ function Dashboard() {
     const webcamRef = React.useRef(null);
 
     const [images, setimages] = useState([])
-
+      
     useEffect(() => {
         var intervalId = setInterval(() => {
       
@@ -50,8 +50,12 @@ function Dashboard() {
         </div>
   
         
-        <div className="block">
-   
+        <div className="grid grid-cols-6 w-8/12 mx-auto gap-5 my-10">
+      {
+        images?.map((ele)=>{
+        return <img src={ele} className="w-12 h-12 object-cover" alt="" />
+        })
+      }
      </div>
      </div>
   )
