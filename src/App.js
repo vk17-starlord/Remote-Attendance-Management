@@ -5,6 +5,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 
+
 function App() {
 
   return (
@@ -16,7 +17,8 @@ function App() {
       <Route path='/' element={<SignIn/>} ></Route>
       <Route path='/Register' element={<AdminLogin/>} ></Route>
       <Route path='/Register' element={<AdminDashboard/>} ></Route>
-      <Route path='/Dashboard' element={<Dashboard/>} ></Route>
+          <Route path='/Dashboard' element={<Dashboard />} ></Route>
+
 
        </Routes>
      </BrowserRouter>
