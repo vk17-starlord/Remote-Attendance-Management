@@ -2,8 +2,19 @@ import React from 'react'
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
+import { useGeolocated } from "react-geolocated";
 
 function SignIn() {
+
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+ 
+  useGeolocated({
+      positionOptions: {
+          enableHighAccuracy: false,
+      },
+      userDecisionTimeout: 5000,
+  });
+
 
   const schema = Yup.object().shape({
     EmployeeID: Yup.string()
@@ -15,7 +26,15 @@ function SignIn() {
   });
   const navigate = useNavigate()
   return (
-    <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
+     <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
+        
+      {
+        !isGeolocationAvailable ? <div className='w-screen z-50 flex-col fixed min-h-screen bg-white flex justify-center items-center'>
+        
+        <img className='w-[30vw] object-cover h-[30vw] rounded-full' src="https://cdn.dribbble.com/users/945601/screenshots/14570188/media/086d0d7dbdaead7a762fa1f442e50616.png?compress=1&resize=1200x900&vertical=top" alt="" />
+       <h1>Your Browser Doesn't Support Geolocation !! Please Use Another Browser</h1>
+        </div>:null
+      }  
 
       <div className="col text-white  bg-[#3c37ff] flex justify-between items-start flex-col p-10 w-full min-h-screen">
 
@@ -24,7 +43,7 @@ function SignIn() {
           <p> Capture It ! </p>
         </div>
 
-
+        
         <div className="text">
           <h1 className='text-3xl font-bold uppercase'>Remote Attendance Management System</h1>
           <p className='text-white/70 my-5'>We have developed a cutting-edge attendance recorder. Using face recognition, you can easily record attendance and have access to in-depth analysis and a wide range of functionalities. </p>
@@ -41,8 +60,8 @@ function SignIn() {
             </div>
           </div>
         </div>
-
       </div>
+
       <div className="col md:w-full min-h-screen flex justify-center items-center ">
         <div className=" mx-auto justify-center w-96">
           <h1 className='font-bold text-3xl my-5 text-center'> Sign In </h1>
@@ -51,6 +70,9 @@ function SignIn() {
             initialValues={{ EmployeeID: "", Password: "" }}
             onSubmit={(values) => {
               // Alert the input values of the form that we filled
+      
+              const payload = {...values,coords}
+              console.log(payload)
               navigate('/faceauth')
             }}
           >
@@ -96,9 +118,10 @@ function SignIn() {
             )}
           </Formik>
         </div>
-    //   </div>
-    // </div>
+       </div>
+     </div>
   )
+  
 }
 
 export default SignIn
