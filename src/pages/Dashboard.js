@@ -13,7 +13,7 @@ function Dashboard() {
     const webcamRef = React.useRef(null);
 
     const [images, setimages] = useState([])
-
+      
     useEffect(() => {
         var intervalId = setInterval(() => {
       
