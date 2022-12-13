@@ -7,7 +7,27 @@ import axios from 'axios';
 
 
 
+
 const CreateEmployeForm = () => {
+
+
+
+  // const [employees, setEmployees] = useState([])
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/employees')
+
+  //     .then(res => {
+  //       console.log(res)
+  //       setEmployees(res.data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }, [])
+
+
+
 
 
   const validationSchema = Yup.object({
@@ -39,6 +59,13 @@ const CreateEmployeForm = () => {
 
   const navigate = useNavigate();
 
+  // const handleDateChange = (e) => {
+  //   const date = e.target.value;
+
+  //   const maindate = new Date(date);
+  //   const DATE = maindate.toISOString();
+  // }
+
   return (
     <div className='lg:w-full min-h-screen  flex lg:justify-center items-center justify-center '>
       <Formik
@@ -51,7 +78,8 @@ const CreateEmployeForm = () => {
           EmpSalary: '',
           EmpJoinDate: '',
           EmpPhoto: "",
-          EmpPassword: ""
+          EmpPassword:""
+
         }}
         onSubmit={(values) => {
           // Alert the input values of the form that we filled
@@ -134,7 +162,7 @@ const CreateEmployeForm = () => {
                 <div className="mb-6">
                   <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Password</label>
                   <input name='EmpPassword' onChange={handleChange}
-                    onBlur={handleBlur} value={values.EmpPassword} type="password" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="Password" />
+                    onBlur={handleBlur} value={values.EmpPassword} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="40000" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpPassword && touched.EmpPassword && errors.EmpPassword}
                   </p>
@@ -144,17 +172,19 @@ const CreateEmployeForm = () => {
                   <input name='EmpJoinDate'
                     value={values.EmpJoinDate}
                     onChange={(e) => {
-                      const maindate = new Date(e.target.value);
-                      const DATE = maindate.toISOString();
-                      console.log(DATE.toString());
-                      setFieldValue('EmpJoinDate', DATE);
+                    const maindate = new Date(e.target.value);
+                    const DATE = maindate.toISOString();
+                    console.log(DATE.toString());
+                    setFieldValue('EmpJoinDate', DATE);
 
-                    }}
-                    onBlur={handleBlur} type="date" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="2021-08-01" />
+                  }}
+                    onBlur={handleBlur}  type="date" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="2021-08-01" />
                   <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                     {errors.EmpJoinDate && touched.EmpJoinDate && errors.EmpJoinDate}
                   </p>
                 </div>
+
+
                 <label className="block mb-2 text-lg font-medium text-black-500 " htmlfor="file_input">Upload file</label>
                 <input onChange={(ev) => {
 
@@ -162,13 +192,20 @@ const CreateEmployeForm = () => {
                   const file = ev.target.files[0];
                   const fileSizeKiloBytes = file.size / 1024;
                   console.log(fileSizeKiloBytes);
-
+                  const reader = new FileReader();
                   if (fileSizeKiloBytes <= MAX_FILE_SIZE) {
-                    setFieldValue("EmpPhoto", file)
+                    reader.onloadend = () => {
+                      // console.log(reader.result);
+                      setFieldValue("EmpPhoto", reader.result.toString())
+                    }
+                    // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
                   };
 
+                  reader.readAsDataURL(file);
                 }} className="p-3 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer  " aria-describedby="file_input_help" id="file_input" type="file" />
                 <p class="mt-1 mb-4 text-[13px] text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+
+
                 <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit">Create Employee</button>
               </form>
             </div>
