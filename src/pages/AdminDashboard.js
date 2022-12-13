@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
+
 function AdminDashboard() {
   const navigate = useNavigate();
   const ToEmployeCreate = () => {
     navigate("/admin/AdminDashboard/CreateEmployeForm");
   };
 
-
+  // get data from server
+  // const [loading, setloading] = useState(false);
+  // const [error, seterror] = useState(null);
 
   const [EmployeeData, setEmployeeData] = useState([
     {
@@ -41,6 +46,20 @@ function AdminDashboard() {
         "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     }
   ]);
+
+  useEffect(() => {
+    // setloading(true);
+    axios.get('http://localhost:3001/employees')
+      .then((res) => {
+      setEmployeeData(res.data);
+        console.log(res.data);
+        // setloading(false);
+      })
+      .catch((err) => {
+        // seterror(err);
+        // setloading(false);
+      })
+  }, [])
 
   return (
     <>
@@ -137,7 +156,7 @@ function AdminDashboard() {
                     <td className="py-4 px-6 ">{emp.contact}</td>
                     <td className="py-4 px-6 ">{emp.joinDate}</td>
                     <td className="py-4 px-6 ">
-                      
+
                       <button className="w-12 h-12 rounded-full bg-blue-500">
                       <i class='bx bx-edit text-xl text-white'></i>
                       </button>
