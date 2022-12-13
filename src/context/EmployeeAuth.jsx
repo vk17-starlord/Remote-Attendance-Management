@@ -16,7 +16,6 @@ const [user, setUser] = useState({
   return (
     <EmployeeContext.Provider value={{user,setUser}} >
         {
-
             children
         }
     </EmployeeContext.Provider>

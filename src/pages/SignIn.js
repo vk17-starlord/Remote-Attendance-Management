@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useGeolocated } from "react-geolocated";
+import UserAuth, { useUserContext } from '../context/UserAuth';
 
 function SignIn() {
 
@@ -17,14 +18,15 @@ function SignIn() {
 
 
   const schema = Yup.object().shape({
-    EmployeeID: Yup.string()
+    empId: Yup.string()
       .required("Employee ID is a required field")
     ,
-    Password: Yup.string()
-      .required("Password is a required field")
-      .min(8, "Password must be at least 8 characters"),
+    password: Yup.string()
+      .required("password is a required field")
+      .min(8, "password must be at least 8 characters"),
   });
   const navigate = useNavigate()
+  const {login} = useUserContext()
   return (
      <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
         
@@ -67,12 +69,13 @@ function SignIn() {
           <h1 className='font-bold text-3xl my-5 text-center'> Sign In </h1>
           <Formik
             validationSchema={schema}
-            initialValues={{ EmployeeID: "", Password: "" }}
+            initialValues={{ empId: "", password: "" }}
             onSubmit={(values) => {
               // Alert the input values of the form that we filled
       
               const payload = {...values,coords}
               console.log(payload)
+              login(payload)
               navigate('/faceauth')
             }}
           >
@@ -94,21 +97,21 @@ function SignIn() {
 
                     <div class="mb-6">
                       <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
-                      <input name='EmployeeID' onChange={handleChange}
-                        onBlur={handleBlur} value={values.EmployeeID} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
+                      <input name='empId' onChange={handleChange}
+                        onBlur={handleBlur} value={values.empId} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
                       <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                        {errors.EmployeeID && touched.EmployeeID && errors.EmployeeID}
+                        {errors.empId && touched.empId && errors.empId}
 
                       </p>
                     </div>
 
                     <div class="mb-6">
-                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter Password </label>
-                      <input name='Password' onChange={handleChange}
-                        onBlur={handleBlur} value={values.Password} type="password" 
+                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter password </label>
+                      <input name='password' onChange={handleChange}
+                        onBlur={handleBlur} value={values.password} type="password" 
                         id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
                       <p class="mt-2 text-sm text-red-600 dark:text-red-500">
-                        {errors.Password && touched.Password && errors.Password}
+                        {errors.password && touched.password && errors.password}
                       </p>
                     </div>
                     <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login To My Account</button>

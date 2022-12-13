@@ -24,8 +24,7 @@ const AdminLoginForm = () => {
                 initialValues={{ EmployeeID: "", Password: "" }}
                 onSubmit={(values) => {
                     // Alert the input values of the form that we filled
-                    alert(JSON.stringify(values));
-                    navigate('/admin/AdminDashboard')
+                
                 }}
             >
                 {({
