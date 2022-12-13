@@ -35,16 +35,7 @@ function WebcamCapture() {
   );
 
 
-  useEffect(()=>{
-
-    // setInterval(() => {
-    //   const imageSrc = webcamRef.current.getScreenshot();
-    //   setimage([...image,imageSrc])
-
-    // }, 2000);
-
-
-  },[image,webcamRef])
+  
 
   return (
    <div className="w-full flex justify-center items-center flex-col min-h-screen">

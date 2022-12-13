@@ -1,9 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DashboardWebcam from "../components/webcam/DashboardWebcam"
+import { useUserContext } from "../context/UserAuth"
 function Dashboard() {
 
+  const {user} = useUserContext();
+
+  
   const [images, setimages] = useState([])
     
+  useEffect(() => {
+   console.log(user)
+  }, [user]);
 
   return (
     <div className='w-full min-h-screen  flex-col flex justify-center items-center'>
