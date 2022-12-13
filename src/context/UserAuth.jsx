@@ -9,13 +9,13 @@ export function useUserContext(){
 
 
 function UserAuth({children}) {
-  const [user, setUser] = useState({ 
+  const [user, setUser] = useState({
   });
 
   const login = async (payload)=>{
 
      console.log(payload)
-     axios.post('http://localhost:5000/auth/login',payload).then((res)=>{
+     axios.post('http://localhost:3001/auth/login',payload).then((res)=>{
       console.log(res.data)
       setUser(res.data)
       return user;

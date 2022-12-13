@@ -83,7 +83,6 @@ const CreateEmployeForm = () => {
         }}
         onSubmit={(values) => {
           // Alert the input values of the form that we filled
-          // alert(JSON.stringify(values));
           console.log(values)
           axios.post('http://localhost:3001/employee/register', values, {
             headers: {
@@ -192,7 +191,6 @@ const CreateEmployeForm = () => {
                   const fileSizeKiloBytes = file.size / 1024;
                   console.log(fileSizeKiloBytes);
                   if (fileSizeKiloBytes <= MAX_FILE_SIZE) {
-                    console.log(file);
                     setFieldValue("profileImage", file)
                   };
                 }} className="p-3 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer  " aria-describedby="file_input_help" id="file_input" type="file" />
