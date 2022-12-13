@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Formik } from "formik";
+import { Formik, FormikContext, useFormikContext  } from "formik";
 import * as Yup from "yup";
 
 const CreateEmployeForm = () => {
@@ -32,6 +32,7 @@ const CreateEmployeForm = () => {
 
   const navigate = useNavigate();
 
+
   return (
     <div className='lg:w-full min-h-screen  flex lg:justify-center items-center justify-center '>
       <Formik
@@ -43,7 +44,8 @@ const CreateEmployeForm = () => {
           EmpPosition: '',
           EmpSalary: '',
           EmpJoinDate: '',
-          // EmpPhoto: null,
+          EmpPhoto: "",
+          
 
         }}
         onSubmit={(values) => {
@@ -59,6 +61,8 @@ const CreateEmployeForm = () => {
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
+        
         }) => (
           <div className="login my-10 bg-white border border-gray-200 rounded-xl shadow-md  p-10">
             <h1 className='font-bold mx-auto text-center my-10 text-2xl w-96'>Create Employee</h1>
@@ -119,7 +123,24 @@ const CreateEmployeForm = () => {
                     {errors.EmpJoinDate && touched.EmpJoinDate && errors.EmpJoinDate}
                   </p>
                 </div>
-                <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit">Login To My Account</button>
+
+
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" HTMLfor="file_input">Upload file</label>
+<input onChange={(ev)=>{
+const file = ev.target.files[0];
+const reader = new FileReader();
+reader.onloadend = () => {
+    console.log(reader.result);
+setFieldValue("EmpPhoto",reader.result.toString())
+    // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
+};
+
+reader.readAsDataURL(file);
+}} class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 " aria-describedby="file_input_help" id="file_input" type="file"/>
+<p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+
+
+                <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit">Create Employee</button>
               </form>
             </div>
           </div>
