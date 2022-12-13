@@ -1,60 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import Webcam from "react-webcam";
-import { clearInterval, setInterval } from 'worker-timers';
-
-
-const videoConstraints = {
-    width: 500,
-    height: 500,
-    facingMode: "user"
-  };
-
+import { useState } from "react"
+import DashboardWebcam from "../components/webcam/DashboardWebcam"
 function Dashboard() {
-    const webcamRef = React.useRef(null);
 
-    const [images, setimages] = useState([])
-      
-    useEffect(() => {
-        var intervalId = setInterval(() => {
-      
-            const imageSrc = webcamRef.current.getScreenshot();
-            setimages([...images , imageSrc])
-
-        }, 5000);
-        return () => {
-            clearInterval(intervalId);
-        };
-
-    }, [webcamRef,images]);
-
-
+  const [images, setimages] = useState([])
+    
 
   return (
     <div className='w-full min-h-screen  flex-col flex justify-center items-center'>
        
-        <div className="w-7/12 mx-auto flex justify-center items-center flex-col">
-   <div className="webcam-container p-5 my-10 rounded-md shadow-md">
-          
-            <Webcam
-        audio={false}
-        height={500}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width={500}
-        videoConstraints={videoConstraints}
-      />
-            </div>
-            <button className='bg-[#304FFE] text-white w-max px-20 py-2 rounded-md font-medium' >
-                Start My Work <i class='bx bxs-briefcase align-middle'></i>
-            </button>
-        </div>
+    <div className="w-full grid grid-cols-3">
+      <div className="col">
+
+      </div>
+      <div className="col">
+            <DashboardWebcam  images={images} setimages={setimages}/>
+      </div>
+      <div className="col">
+
+      </div>
+    </div>
   
         
         <div className="grid grid-cols-6 w-8/12 mx-auto gap-5 my-10">
       {
         images?.map((ele)=>{
-        return <img src={ele} className="w-12 h-12 object-cover" alt="" />
-        })
+        return <div className="block">
+          <img src={ele?.image} className="w-12 h-12 object-cover" alt="" />
+          <h1>{ele.timeStamp}</h1>
+        </div>
+
+      })
       }
      </div>
      </div>

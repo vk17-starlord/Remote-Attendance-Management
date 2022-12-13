@@ -5,7 +5,7 @@ import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import CreateEmployeForm from "./components/CreateEmployeForm";
-
+import EmployeeDetail from "./pages/EmployeeDetail";
 function App() {
 
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route path='/admin' element={<AdminLogin />}></Route>
           <Route path='/admin/AdminDashboard' element={<AdminDashboard />}></Route>
           <Route path='/admin/AdminDashboard/CreateEmployeForm' element={<CreateEmployeForm />}></Route>
+          <Route path='/employeeDetail/:id' element={<EmployeeDetail />}></Route>
 
         </Routes>
       </BrowserRouter>
