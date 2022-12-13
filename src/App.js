@@ -4,8 +4,10 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
+
 import CreateEmployeForm from "./components/CreateEmployeForm";
 import EmployeeDetail from "./pages/EmployeeDetail";
+
 function App() {
 
   return (
@@ -14,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Routes>
         <Route path='/faceauth' element={<WebcamCapture />} ></Route>
+
+
 
           <Route path='/' element={<SignIn />} ></Route>
           <Route path='/Register' element={<AdminLogin />} ></Route>
