@@ -4,17 +4,18 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useGeolocated } from "react-geolocated";
 import UserAuth, { useUserContext } from '../context/UserAuth';
+import { Link } from 'react-router-dom';
 
 function SignIn() {
 
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
- 
-  useGeolocated({
+
+    useGeolocated({
       positionOptions: {
-          enableHighAccuracy: false,
+        enableHighAccuracy: false,
       },
       userDecisionTimeout: 5000,
-  });
+    });
 
 
   const schema = Yup.object().shape({
@@ -26,17 +27,17 @@ function SignIn() {
       .min(8, "password must be at least 8 characters"),
   });
   const navigate = useNavigate()
-  const {login} = useUserContext()
+  const { login } = useUserContext()
   return (
-     <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
-        
+    <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
+
       {
         !isGeolocationAvailable ? <div className='w-screen z-50 flex-col fixed min-h-screen bg-white flex justify-center items-center'>
-        
-        <img className='w-[30vw] object-cover h-[30vw] rounded-full' src="https://cdn.dribbble.com/users/945601/screenshots/14570188/media/086d0d7dbdaead7a762fa1f442e50616.png?compress=1&resize=1200x900&vertical=top" alt="" />
-       <h1>Your Browser Doesn't Support Geolocation !! Please Use Another Browser</h1>
-        </div>:null
-      }  
+
+          <img className='w-[30vw] object-cover h-[30vw] rounded-full' src="https://cdn.dribbble.com/users/945601/screenshots/14570188/media/086d0d7dbdaead7a762fa1f442e50616.png?compress=1&resize=1200x900&vertical=top" alt="" />
+          <h1>Your Browser Doesn't Support Geolocation !! Please Use Another Browser</h1>
+        </div> : null
+      }
 
       <div className="col text-white  bg-[#3c37ff] flex justify-between items-start flex-col p-10 w-full min-h-screen">
 
@@ -45,7 +46,7 @@ function SignIn() {
           <p> Capture It ! </p>
         </div>
 
-        
+
         <div className="text">
           <h1 className='text-3xl font-bold uppercase'>Remote Attendance Management System</h1>
           <p className='text-white/70 my-5'>We have developed a cutting-edge attendance recorder. Using face recognition, you can easily record attendance and have access to in-depth analysis and a wide range of functionalities. </p>
@@ -72,8 +73,8 @@ function SignIn() {
             initialValues={{ empId: "", password: "" }}
             onSubmit={(values) => {
               // Alert the input values of the form that we filled
-      
-              const payload = {...values,coords}
+
+              const payload = { ...values, coords }
               console.log(payload)
               login(payload)
               navigate('/faceauth')
@@ -95,36 +96,41 @@ function SignIn() {
 
                     {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
 
-                    <div class="mb-6">
-                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
+                    <div className="mb-6">
+                      <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
                       <input name='empId' onChange={handleChange}
-                        onBlur={handleBlur} value={values.empId} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
-                      <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        onBlur={handleBlur} value={values.empId} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
+                      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.empId && touched.empId && errors.empId}
 
                       </p>
                     </div>
 
-                    <div class="mb-6">
-                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter password </label>
+                    <div className="mb-6">
+                      <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter password </label>
                       <input name='password' onChange={handleChange}
-                        onBlur={handleBlur} value={values.password} type="password" 
-                        id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
-                      <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        onBlur={handleBlur} value={values.password} type="password"
+                        id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
+                      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.password && touched.password && errors.password}
                       </p>
                     </div>
-                    <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login To My Account</button>
+                    <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit  ">Login</button>
+                    <span className='flex mt-3 justify-center'>
+                      <Link to={"/admin"} className="text-blue-600 hover:underline">
+                        Are you admin ?
+                      </Link>
+                    </span>
                   </form>
                 </div>
               </div>
             )}
           </Formik>
         </div>
-       </div>
-     </div>
+      </div>
+    </div>
   )
-  
+
 }
 
 export default SignIn
