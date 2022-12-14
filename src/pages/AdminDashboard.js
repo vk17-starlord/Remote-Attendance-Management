@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { useNavigate } from "react-router-dom";
-// import { useEffect } from "react";
-// import axios from "axios";
+import { useEffect } from "react";
+import axios from "axios";
 import DeleteEmployee from "../components/DeleteEmployee";
 
 
@@ -23,81 +23,21 @@ function AdminDashboard() {
   // const [error, seterror] = useState(null);
 
   const [EmployeeData, setEmployeeData] = useState([
-    {
-      id: 1,
-      empname: "Gaurav Misal",
-      empsalary: "20000",
-      position: "Frontend Developer",
-      contact: 50000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 2,
-      empname: "Ishan Khirsagar",
-      empsalary: "20000",
-      position: "Data Scientist",
-      contact: 100000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 3,
-      empname: "Vinit Khollam",
-      empsalary: "20000",
-      position: "Frontend Developer",
-      contact: 800000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 4,
-      empname: "Abbas Pathan",
-      empsalary: "200000",
-      position: "Backend Developer",
-      contact: 50000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 5,
-      empname: "Vedant Gandhi",
-      empsalary: "20000",
-      position: "Fullstack Developer",
-      contact: 50000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      id: 6,
-      empname: "Shivam Mishra",
-      empsalary: "200000",
-      position: "Blockchain Developer",
-      contact: 50000,
-      joinDate: "11-2-2022",
-      profile:
-        "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    }
   ]);
 
-  // useEffect(() => {
-  //   // setloading(true);
-  //   axios.get('http://localhost:3001/employees')
-  //     .then((res) => {
-  //     setEmployeeData(res.data);
-  //       console.log(res.data);
-  //       // setloading(false);
-  //     })
-  //     .catch((err) => {
-  //       // seterror(err);
-  //       // setloading(false);
-  //     })
-  // }, [])
+  useEffect(() => {
+    // setloading(true);
+    axios.get('http://localhost:5000/employee')
+      .then((res) => {
+      // setEmployeeData(res.data);
+        console.log(res.data);
+        // setloading(false);
+      })
+      .catch((err) => {
+        // seterror(err);
+        // setloading(false);
+      })
+  }, [])
 
   return (
     <>
@@ -144,9 +84,9 @@ function AdminDashboard() {
       </div>
 
       <div className="w-11/12 mx-auto min-h-screen flex justify-center mt-4 ">
-        <div className="overflow-x-auto relative w-full  px-2 sm:px-4 py-2.5">
-          <table className="w-[1370px] text-sm text-left text-gray-600 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-100 ">
+        <div className="overflow-x-auto relative w-full  px-2 sm:px-4 py-3 bg-[#f8f9fa] rounded-md shadow-lg">
+          <table className="w-[1370px] h-full text-sm text-left ">
+            <thead className="text-xxl font-bold text-gray-700 uppercase  ">
               <tr className="">
                 <th scope="col" className="py-3 px-6 ">
                   Employee ID
@@ -174,20 +114,20 @@ function AdminDashboard() {
             <tbody>
               {EmployeeData.map((emp) => {
                 return (
-                  <tr className="bg-white border-b font-[600] " key={emp.id}>
+                  <tr className="bg-white border-b font-[600]" key={emp.id}>
                     <th
                       scope="row"
                       className="font-medium  py-4 px-6  text-gray-900 whitespace-nowrap "
                     >
                       {emp.id}
                     </th>
-                    <td className="py-4 px-6 flex items-center ">
+                    <td className="py-9 pr-6 flex items-center justify-center">
                       <img
-                        className="w-10 h-10 mx-2 rounded-full"
+                        className="w-10 h-10  rounded-full"
                         src={emp.profile}
                         alt=""
                       />
-                      <span className="ml-2 ">{emp.empname}</span>
+                      <span className="ml-2">{emp.empname}</span>
                     </td>
                     <td className="py-4 px-6 ">${emp.empsalary}</td>
                     <td className="py-4 px-6 ">{emp.position}</td>
