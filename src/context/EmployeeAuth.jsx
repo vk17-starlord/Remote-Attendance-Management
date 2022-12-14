@@ -6,13 +6,13 @@ export function useEmployeeContext(){
   }
 
 
-  
+
 function EmployeeAuth({children}) {
 
 const [user, setUser] = useState({
-    
+
 });
- 
+
   return (
     <EmployeeContext.Provider value={{user,setUser}} >
         {
