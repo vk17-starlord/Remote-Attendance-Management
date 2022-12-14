@@ -13,13 +13,12 @@ const EditEmployee = () => {
     const [error, seterror] = useState(null);
     const { id } = useParams()
 
-
     useEffect(() => {
         setloading(true);
-        axios.get('http://localhost:3001/employees')
+        axios.get(`http://localhost:5000/employee/${id}`)
             .then((res) => {
-                setEmployee(res.data);
                 console.log(res.data);
+                setEmployee(res.data);
                 setloading(false);
             })
             .catch((err) => {
@@ -27,7 +26,6 @@ const EditEmployee = () => {
                 setloading(false);
             })
     }, [])
-
     const schema = Yup.object().shape({
         name: Yup
             .string('Enter Name'),
@@ -52,26 +50,31 @@ const EditEmployee = () => {
             <Formik
                 validationSchema={schema}
                 initialValues={{
-                    name: employee?.name,
-                    empId: employee?.empId,
-                    phone: employee?.phone,
-                    position: employee?.position,
-                    salary: employee?.salary,
-                    joiningDate: employee?.joiningDate,
-                    profileImage: employee?.profileImage,
-                    password: employee.profileImage?.password,
+                    // there is something wrong in initial values while updating
+                    name: employee.name,
+                    empId: employee.empId,
+                    phone: employee.phone,
+                    position: employee.position,
+                    salary: employee.salary,
+                    joiningDate: employee.joiningDate,
+                    profileImage: employee.profileImage,
+                    password: employee.password,
                 }}
                 onSubmit={(values) => {
+                    console.log("Values before update")
                     console.log(values);
-                    axios.put(`http://localhost:3001/employees/${id}`, values, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                    axios.put(`http://localhost:5000/employees/${id}`, {
+                        data: values
+
                     })
                         .then((res) => {
                             console.log(res);
-                        }
-                        )
+                            console.log("Employee Updated Successfully");
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            console.log("Employee Not Updated");
+                        })
                 }}>
                 {({
                     values,
