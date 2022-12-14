@@ -9,7 +9,9 @@ function Dashboard() {
   const [images, setimages] = useState([])
     
   useEffect(() => {
-   console.log(user)
+  
+  console.log(user)
+  
   }, [user]);
 
   return (
