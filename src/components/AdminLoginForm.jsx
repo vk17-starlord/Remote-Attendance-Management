@@ -24,13 +24,28 @@ const AdminLoginForm = () => {
             <Formik
                 validationSchema={schema}
                 initialValues={{ empId: "", password: "" }}
-                onSubmit={(values) => {
+                onSubmit={async(values) => {
                     // Alert the input values of the form that we filled
                     const payload = { ...values }
-                   
-                    login(payload)
-                    // console.log(values);
-                    navigate('/admin/AdminDashboard');
+                    try {
+                        const res = await login(payload)
+                       if(res.err){
+                         alert(res.err)
+                       }else{ 
+                         console.log(res) 
+                         if(res.role==="admin"){
+                           navigate('/admin/AdminDashboard')
+                         }else{
+                           navigate('/faceauth')
+                         }
+                         
+                       }
+                         } catch (error) {
+                           console.log(error)
+                         }
+           
+
+                    
                 }}>
                 {({
                     values,

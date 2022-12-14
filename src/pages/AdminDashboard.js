@@ -28,7 +28,7 @@ function AdminDashboard() {
     {
       id: 2,
       empname: "Ishan Misal",
-      empsalary: "20000",
+      empsalary: "100",
       position: "DevOps Developer",
       contact: 50000,
       joinDate: "11-2-2022",
