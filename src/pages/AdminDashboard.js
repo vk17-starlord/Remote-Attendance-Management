@@ -3,12 +3,20 @@ import AdminNavbar from "../components/AdminNavbar";
 import { useNavigate } from "react-router-dom";
 // import { useEffect } from "react";
 // import axios from "axios";
+import DeleteEmployee from "../components/DeleteEmployee";
+
+
+
 
 function AdminDashboard() {
   const navigate = useNavigate();
   const ToEmployeCreate = () => {
     navigate("/admin/AdminDashboard/CreateEmployeForm");
   };
+
+  function handleEdit() {
+
+  }
 
   // get data from server
   // const [loading, setloading] = useState(false);
@@ -27,10 +35,10 @@ function AdminDashboard() {
     },
     {
       id: 2,
-      empname: "Ishan Misal",
-      empsalary: "100",
-      position: "DevOps Developer",
-      contact: 50000,
+      empname: "Ishan Khirsagar",
+      empsalary: "20000",
+      position: "Data Scientist",
+      contact: 100000,
       joinDate: "11-2-2022",
       profile:
         "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -39,16 +47,16 @@ function AdminDashboard() {
       id: 3,
       empname: "Vinit Khollam",
       empsalary: "20000",
-      position: "Backend Developer",
-      contact: 50000,
+      position: "Frontend Developer",
+      contact: 800000,
       joinDate: "11-2-2022",
       profile:
         "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
-      id:4,
-      empname: "Vinit Khollam",
-      empsalary: "20000",
+      id: 4,
+      empname: "Abbas Pathan",
+      empsalary: "200000",
       position: "Backend Developer",
       contact: 50000,
       joinDate: "11-2-2022",
@@ -57,9 +65,9 @@ function AdminDashboard() {
     },
     {
       id: 5,
-      empname: "Vinit Khollam",
+      empname: "Vedant Gandhi",
       empsalary: "20000",
-      position: "Backend Developer",
+      position: "Fullstack Developer",
       contact: 50000,
       joinDate: "11-2-2022",
       profile:
@@ -67,9 +75,9 @@ function AdminDashboard() {
     },
     {
       id: 6,
-      empname: "Vinit Khollam",
-      empsalary: "20000",
-      position: "Backend Developer",
+      empname: "Shivam Mishra",
+      empsalary: "200000",
+      position: "Blockchain Developer",
       contact: 50000,
       joinDate: "11-2-2022",
       profile:
@@ -171,11 +179,11 @@ function AdminDashboard() {
                       scope="row"
                       className="font-medium  py-4 px-6  text-gray-900 whitespace-nowrap "
                     >
-                     {emp.id}
+                      {emp.id}
                     </th>
                     <td className="py-4 px-6 flex items-center ">
                       <img
-                        className="w-12 h-12 mx-2 rounded-full"
+                        className="w-10 h-10 mx-2 rounded-full"
                         src={emp.profile}
                         alt=""
                       />
@@ -187,17 +195,20 @@ function AdminDashboard() {
                     <td className="py-4 px-6 ">{emp.joinDate}</td>
                     <td className="py-4 px-6 ">
 
-                      <button className="w-12 h-12 rounded-full bg-blue-500">
-                      <i className='bx bx-edit text-xl text-white'></i>
+                      <button onClick={() => {
+                         console.log("edit");
+                         navigate(`/admin/AdminDashboard/EditEmployee/${emp.id}`)
+                      }} className="w-12 h-12 rounded-full bg-blue-500">
+                        <i className='bx bx-edit text-xl text-white'></i>
                       </button>
 
                       <button className="w-12 mx-5 h-12 rounded-full bg-red-500">
-                      <i className='bx bxs-trash text-white text-xl'></i>                      </button>
+                        <i className='bx bxs-trash text-white text-xl'></i>                      </button>
 
-                      <button onClick={()=>{
+                      <button onClick={() => {
                         navigate(`/employeeDetail/${emp.id}`)
                       }} className="w-12  h-12 rounded-full bg-green-700">
-                      <i className='bx bxs-user-detail  text-xl  text-white'></i></button>
+                        <i className='bx bxs-user-detail  text-xl  text-white'></i></button>
 
                     </td>
                   </tr>

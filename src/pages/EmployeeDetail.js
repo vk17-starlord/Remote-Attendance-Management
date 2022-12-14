@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import ViewEmployee from '../components/ViewEmployee'
 
 function EmployeeDetail() {
- 
-    const {id} = useParams()
- 
+
+  const { id } = useParams()
+
   return (
-    <div className='w-full'>
-        
-     </div>
+
+    <ViewEmployee/>
+
   )
 }
 
