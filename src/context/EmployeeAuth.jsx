@@ -1,25 +1,74 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { DeleteEmployeeByID, getEmployees } from '../api/AdminAPI'
 const EmployeeContext = React.createContext()
+const AllEmployeesContext = React.createContext()
 
-export function useEmployeeContext(){
-    return useContext(EmployeeContext)
+
+  export function useAllEmployeeContext(){
+    return useContext(AllEmployeesContext)
   }
-
 
 
 function EmployeeAuth({children}) {
 
-const [user, setUser] = useState({
 
-});
+
+const [AllEmployees, setAllEmployees] = useState(null);
+
+
+const UpdateEmployees= (data)=>{
+  setAllEmployees(data)
+}
+
+const DeleteEmployee = async(id)=>{
+  const res =await DeleteEmployeeByID(id)
+  if(res){
+
+    RefreshData()
+  }
+ 
+}
+
+const RefreshData = async()=>{
+  const res = await getEmployees();
+  if(res.err){
+    alert("error occurred")
+  }else{
+    console.log(res)
+    const {pageData} = res;
+    UpdateEmployees(pageData)
+  }
+
+}
+
+
+useEffect(() => {
+  console.log("here")
+  const getData = async()=>{
+    const res = await getEmployees();
+    if(res.err){
+      alert("error occurred")
+    }else{
+      console.log(res)
+      const {pageData} = res;
+      UpdateEmployees(pageData)
+    }
+  
+}
+
+  getData()
+
+}, []);
 
   return (
-    <EmployeeContext.Provider value={{user,setUser}} >
+
+        <AllEmployeesContext.Provider value={{RefreshData , AllEmployees ,UpdateEmployees,DeleteEmployee }}>
         {
             children
         }
-    </EmployeeContext.Provider>
+        </AllEmployeesContext.Provider> 
+
   )
 }
 
-export default EmployeeAuth
+export default EmployeeAuth;
