@@ -96,22 +96,22 @@ function SignIn() {
 
                     {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
 
-                    <div class="mb-6">
-                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
+                    <div className="mb-6">
+                      <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter  Employee ID</label>
                       <input name='empId' onChange={handleChange}
-                        onBlur={handleBlur} value={values.empId} type="text" id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
-                      <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        onBlur={handleBlur} value={values.empId} type="text" id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g EIA127538234" />
+                      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.empId && touched.empId && errors.empId}
 
                       </p>
                     </div>
 
-                    <div class="mb-6">
-                      <label for="success" class="block mb-2 text-lg font-medium text-black-500 ">Enter password </label>
+                    <div className="mb-6">
+                      <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter password </label>
                       <input name='password' onChange={handleChange}
                         onBlur={handleBlur} value={values.password} type="password"
-                        id="success" class="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
-                      <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+                        id="success" className="bg-gray-50 border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="e.g YourPass@1234" />
+                      <p className="mt-2 text-sm text-red-600 dark:text-red-500">
                         {errors.password && touched.password && errors.password}
                       </p>
                     </div>
