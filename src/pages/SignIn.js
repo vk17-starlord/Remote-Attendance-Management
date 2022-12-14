@@ -27,6 +27,7 @@ function SignIn() {
   });
   const navigate = useNavigate()
   const {login} = useUserContext()
+
   return (
      <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
         
@@ -70,13 +71,23 @@ function SignIn() {
           <Formik
             validationSchema={schema}
             initialValues={{ empId: "", password: "" }}
-            onSubmit={(values) => {
+            onSubmit={ async(values) => {
               // Alert the input values of the form that we filled
       
               const payload = {...values,coords}
-              console.log(payload)
-              login(payload)
-              navigate('/faceauth')
+             
+              try {
+             const res = await login(payload)
+            if(res.err){
+              alert(res.err)
+            }else{
+              navigate('/dashboard')
+            }
+              } catch (error) {
+                console.log(error)
+              }
+
+             
             }}
           >
             {({

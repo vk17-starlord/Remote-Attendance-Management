@@ -27,7 +27,7 @@ const AdminLoginForm = () => {
                 onSubmit={(values) => {
                     // Alert the input values of the form that we filled
                     const payload = { ...values }
-                    console.log(payload)
+                   
                     login(payload)
                     // console.log(values);
                     navigate('/admin/AdminDashboard');
