@@ -24,23 +24,15 @@ function Dashboard() {
       <div className="col">
             <DashboardWebcam  images={images} setimages={setimages}/>
       </div>
-      <div className="col">
+      <div className="col flex justify-center items-center">
+        <div className="w-10/12 mx-auto min-h-[50vh] bg-white shadow-md rounded-md">
 
+        </div>
       </div>
     </div>
   
         
-        <div className="grid grid-cols-6 w-8/12 mx-auto gap-5 my-10">
-      {
-        images?.map((ele)=>{
-        return <div className="block">
-          <img src={ele?.image} className="w-12 h-12 object-cover" alt="" />
-          <h1>{ele.timeStamp}</h1>
-        </div>
-
-      })
-      }
-     </div>
+ 
      </div>
   )
 }
