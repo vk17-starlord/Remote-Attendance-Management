@@ -4,12 +4,14 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const EditEmployee = () => {
 
     const [employee, setEmployee] = useState([]);
     const [loading, setloading] = useState(false);
     const [error, seterror] = useState(null);
+    const { id } = useParams()
 
 
     useEffect(() => {
@@ -61,7 +63,7 @@ const EditEmployee = () => {
                 }}
                 onSubmit={(values) => {
                     console.log(values);
-                    axios.post('http://localhost:3001/employees', values, {
+                    axios.put(`http://localhost:3001/employees/${id}`, values, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }
@@ -86,7 +88,7 @@ const EditEmployee = () => {
                         <div className="form ">
                             <form noValidate onSubmit={handleSubmit} className="w-96 md:w- lg:w-full ">
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's ID</label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's ID</label>
                                     <input name='empId' onChange={handleChange}
                                         onBlur={handleBlur} value={values.empId} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="JohnDoe123" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -97,7 +99,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6 ">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Name </label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Name </label>
                                     <input name='name' onChange={handleChange}
                                         onBlur={handleBlur} value={values.name} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="John Doe" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -105,7 +107,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Contact </label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Contact </label>
                                     <input name='phone' onChange={handleChange}
                                         onBlur={handleBlur} value={values.phone} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="9112233322" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -113,7 +115,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Position </label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Position </label>
                                     <input name='position' onChange={handleChange}
                                         onBlur={handleBlur} value={values.position} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="SDE-1" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -121,7 +123,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Salary </label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Salary </label>
                                     <input name='salary' onChange={handleChange}
                                         onBlur={handleBlur} value={values.salary} type="text" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="40000" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -129,7 +131,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Password</label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Password</label>
                                     <input name='password' onChange={handleChange}
                                         onBlur={handleBlur} value={values.password} type="password" id="success" className=" border border-gray-500 text-gray-900 dark:text-gray-400 placeholder-gray-700 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 " placeholder="40000" />
                                     <p className="mt-2 text-sm text-red-600 dark:text-red-500">
@@ -137,7 +139,7 @@ const EditEmployee = () => {
                                     </p>
                                 </div>
                                 <div className="mb-6">
-                                    <label htmlfor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Join Date </label>
+                                    <label htmlFor="success" className="block mb-2 text-lg font-medium text-black-500 ">Enter Employee's Join Date </label>
                                     <input name='joiningDate'
                                         value={values.joiningDate}
                                         onChange={(e) => {
@@ -154,7 +156,7 @@ const EditEmployee = () => {
                                 </div>
 
 
-                                <label className="block mb-2 text-lg font-medium text-black-500 " htmlfor="file_input">Upload file</label>
+                                <label className="block mb-2 text-lg font-medium text-black-500 " htmlFor="file_input">Upload file</label>
                                 <input onChange={(ev) => {
                                     const MAX_FILE_SIZE = 5120 // 5MB
                                     const file = ev.target.files[0];
@@ -164,7 +166,7 @@ const EditEmployee = () => {
                                         setFieldValue("profileImage", file)
                                     };
                                 }} className="p-3 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer  " aria-describedby="file_input_help" id="file_input" type="file" />
-                                <p class="mt-1 mb-4 text-[13px] text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                                <p className="mt-1 mb-4 text-[13px] text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
                                 <button className='bg-[#304FFE] text-white w-full py-2 rounded-md font-medium' type="submit">Edit Employee</button>
                             </form>
                         </div>

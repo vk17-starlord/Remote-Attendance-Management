@@ -15,8 +15,7 @@ function AdminDashboard() {
   };
 
   function handleEdit() {
-    console.log("edit");
-    navigate("/admin/AdminDashboard/EditEmployee")
+
   }
 
   // get data from server
@@ -36,10 +35,10 @@ function AdminDashboard() {
     },
     {
       id: 2,
-      empname: "Ishan Misal",
+      empname: "Ishan Khirsagar",
       empsalary: "20000",
-      position: "DevOps Developer",
-      contact: 50000,
+      position: "Data Scientist",
+      contact: 100000,
       joinDate: "11-2-2022",
       profile:
         "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -48,16 +47,16 @@ function AdminDashboard() {
       id: 3,
       empname: "Vinit Khollam",
       empsalary: "20000",
-      position: "Backend Developer",
-      contact: 50000,
+      position: "Frontend Developer",
+      contact: 800000,
       joinDate: "11-2-2022",
       profile:
         "https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       id: 4,
-      empname: "Vinit Khollam",
-      empsalary: "20000",
+      empname: "Abbas Pathan",
+      empsalary: "200000",
       position: "Backend Developer",
       contact: 50000,
       joinDate: "11-2-2022",
@@ -66,9 +65,9 @@ function AdminDashboard() {
     },
     {
       id: 5,
-      empname: "Vinit Khollam",
+      empname: "Vedant Gandhi",
       empsalary: "20000",
-      position: "Backend Developer",
+      position: "Fullstack Developer",
       contact: 50000,
       joinDate: "11-2-2022",
       profile:
@@ -76,9 +75,9 @@ function AdminDashboard() {
     },
     {
       id: 6,
-      empname: "Vinit Khollam",
-      empsalary: "20000",
-      position: "Backend Developer",
+      empname: "Shivam Mishra",
+      empsalary: "200000",
+      position: "Blockchain Developer",
       contact: 50000,
       joinDate: "11-2-2022",
       profile:
@@ -196,7 +195,10 @@ function AdminDashboard() {
                     <td className="py-4 px-6 ">{emp.joinDate}</td>
                     <td className="py-4 px-6 ">
 
-                      <button onClick={handleEdit} className="w-12 h-12 rounded-full bg-blue-500">
+                      <button onClick={() => {
+                         console.log("edit");
+                         navigate(`/admin/AdminDashboard/EditEmployee/${emp.id}`)
+                      }} className="w-12 h-12 rounded-full bg-blue-500">
                         <i className='bx bx-edit text-xl text-white'></i>
                       </button>
 

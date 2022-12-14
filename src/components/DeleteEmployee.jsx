@@ -9,7 +9,7 @@ export default function DeleteEmployee() {
 
     const [employees, setEmployees] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:3001/employees')
+        axios.get(`http://localhost:3001/employees${id}`)
             .then(res => {
                 console.log(res)
                 setEmployees(res.data)

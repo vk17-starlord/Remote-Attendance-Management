@@ -28,7 +28,7 @@ function App() {
           <Route path='/admin/AdminDashboard' element={<AdminDashboard />}></Route>
           <Route path='/admin/AdminDashboard/CreateEmployeForm' element={<CreateEmployeForm />}></Route>
           <Route path='/employeeDetail/:id' element={<EmployeeDetail />}></Route>
-          <Route path='/admin/AdminDashboard/EditEmployee' element={<EditEmployee />}></Route>
+          <Route path='/admin/AdminDashboard/EditEmployee/:id' element={<EditEmployee />}></Route>
 
         </Routes>
       </BrowserRouter>
