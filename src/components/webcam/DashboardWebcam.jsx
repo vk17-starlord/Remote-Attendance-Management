@@ -68,13 +68,13 @@ function DashboardWebcam({ images, setimages }) {
     }
 
     return () => {
-      clearInterval(intervalId);
+     closeTimer()
     };
   }, [webcamRef, startTimer , interval]);
 
   return (
     <div className="w-full mx-auto flex justify-center items-center flex-col">
-      <div className="webcam-container p-5 my-10">
+      <div className="webcam-container bg-gray-100 rounded-md p-5 my-10">
         <Webcam
           audio={false}
           height={400}

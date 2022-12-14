@@ -1,74 +1,21 @@
 import React, { useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
-// import DeleteEmployee from "../components/DeleteEmployee";
-import { useParams } from 'react-router-dom'
-
-
+import { getEmployees } from "../api/AdminAPI";
+import { Link, useNavigate } from "react-router-dom";
+import { useAllEmployeeContext } from "../context/EmployeeAuth";
 
 
 
 function AdminDashboard() {
-  const navigate = useNavigate();
-  const ToEmployeCreate = () => {
-    navigate("/admin/AdminDashboard/CreateEmployeForm");
-  };
 
-  const { id } = useParams()
-  // console.log(id)
-  // why this id is undefined???
+  const navigate = useNavigate()
 
-  const [emp, setemp] = useState([])
-  useEffect(() => {
-    axios.get(`http://localhost:5000/employee${id}`)
-      .then(res => {
-        console.log(res.data)
-        setemp(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
-
-  const deleteEmp = () => {
-    axios.delete(`http://localhost:5000/employee/${id}`)
-      .then(res => {
-        console.log(res.data)
-        console.log("deleted")
-
-        setemp(emp.filter(employee => employee.empId !== id))
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
-
-
-  // get data from server
-  // const [loading, setloading] = useState(false);
-  // const [error, seterror] = useState(null);
-
-  const [EmployeeData, setEmployeeData] = useState([]);
-
-  useEffect(() => {
-    // setloading(true);
-    axios.get('http://localhost:5000/employee')
-      .then((res) => {
-        console.log(res.data);
-        const { pageData } = res.data;
-        setEmployeeData(pageData);
-        // setloading(false);
-      })
-      .catch((err) => {
-        // seterror(err);
-        // setloading(false);
-        console.log(err);
-      })
-  }, [])
-
+  const{ AllEmployees , DeleteEmployee , RefreshData } = useAllEmployeeContext();
+  console.log(AllEmployees) 
+  useEffect(()=>{
+    RefreshData()
+  },[AllEmployees,RefreshData])
   return (
     <>
       <AdminNavbar />
@@ -113,9 +60,9 @@ function AdminDashboard() {
         </div>
       </div>
 
-      <div className="w-11/12 mx-auto min-h-screen flex justify-center mt-4 ">
+      <div className="w-11/12 mx-auto min-h-max flex justify-center mt-4 ">
         <div className="overflow-x-auto relative w-full  px-2 sm:px-4 py-3 bg-[#f8f9fa] rounded-md shadow-lg">
-          <table className="w-[1370px] h-full text-sm text-left ">
+          <table className="w-[1370px] min-h-max text-sm text-left ">
             <thead className="text-xxl font-bold text-gray-700 uppercase  ">
               <tr className="">
                 <th scope="col" className="py-3 px-6 ">
@@ -142,7 +89,7 @@ function AdminDashboard() {
               </tr>
             </thead>
             <tbody>
-              {EmployeeData?.map((emp) => {
+              {AllEmployees?.map((emp) => {
                 return (
                   <tr className="bg-white border-b font-[600]" key={emp.empId}>
                     <th
@@ -172,9 +119,15 @@ function AdminDashboard() {
                         <i className='bx bx-edit text-xl text-white'></i>
                       </button>
 
-                      <button onClick={
-                        deleteEmp
-                      } className="w-12 mx-5 h-12 rounded-full bg-red-500">
+                      <button 
+                      
+                       onClick={()=>{
+
+                        DeleteEmployee(emp.empId)
+                        
+                        
+                       }}
+                      className="w-12 mx-5 h-12 rounded-full bg-red-500">
                         <i className='bx bxs-trash text-white text-xl'></i></button>
 
                       <button onClick={() => {
@@ -191,13 +144,15 @@ function AdminDashboard() {
         </div>
       </div>
       <div className="justify-center  flex mb-2">
-        <button
-          onClick={ToEmployeCreate}
+       <Link to={"/admin/AdminDashboard/CreateEmployeForm"}>
+       <button
+          // onClick={ToEmployeCreate}
           type="button"
           className="fixed right-10 bottom-10 text-blue-700 border border-blue-700 bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center inline-flex items-center "
         >
           <i className="bx bx-plus  text-blue-200"></i>
         </button>
+       </Link>
       </div>
     </>
   );

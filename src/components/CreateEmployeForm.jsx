@@ -2,12 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-
-
-
+import { CreateEmployeeData } from '../api/AdminAPI';
 const CreateEmployeForm = () => {
 
 
@@ -81,19 +76,18 @@ const CreateEmployeForm = () => {
           password: ""
 
         }}
-        onSubmit={(values) => {
+        onSubmit={async(values) => {
           // Alert the input values of the form that we filled
           console.log(values)
-          axios.post('http://localhost:3001/employee/register', values, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
-            .then(res => {
-              console.log(res)
-              navigate('/admin/AdminDashboard')
-            }
-            )
+          const res = await CreateEmployeeData(values)
+          console.log(res)
+          if(res.error){
+            alert("Error occurred please try again")
+          }else{
+            alert("Employee Created Successfully !!")
+            navigate("/admin/admindashboard")
+          }
+
         }
         }
       >

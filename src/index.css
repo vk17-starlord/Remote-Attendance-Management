@@ -7,3 +7,48 @@
     background-image: url('https://cdn.dribbble.com/users/2256359/screenshots/15441742/media/1a4f3a1e1a7f40333744b79f62d13e7f.jpg');
   }
 
+
+  .bg-card{
+    background-image: url("https://cdn.dribbble.com/users/2256359/screenshots/15433092/media/311b79dd55ecde91f8096d9e49dc2577.jpg?compress=1&resize=1200x900&vertical=top");
+    background-size: cover;
+  }
+
+
+  @keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+
+ @-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.load {
+	width: 200px;
+	height: 200px;
+	border:solid 10px #677cf8;
+	border-radius: 50%;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	 -webkit-transition: all 2s ease-in;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         2s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+    	
+    	 transition: all 2s ease-in;
+    animation-name:             rotate; 
+    animation-duration:         2s; 
+    animation-iteration-count:  infinite;
+    animation-timing-function: linear; 
+}
