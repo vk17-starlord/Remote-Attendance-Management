@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGeolocated } from "react-geolocated";
 import UserAuth, { useUserContext } from '../context/UserAuth';
 import { Link } from 'react-router-dom';
+import image from "../assets/R.A.M.S-1(1).png"
 
 function SignIn() {
 
@@ -44,12 +45,15 @@ function SignIn() {
 
         <div className="flex justify-start items-center">
           <i className='bx bxl-d/ev-to text-3xl'></i>
-          <p> Capture It ! </p>
+          <span className=''>
+            <img src={image} alt="logo"  className='h-[130px]' />
+            {/* R.A.M.S */}
+          </span>
         </div>
 
 
         <div className="text">
-          <h1 className='text-3xl font-bold uppercase'>Remote Attendance Management System</h1>
+          <h1 className='text-3xl font-bold '>Remote Attendance Management System</h1>
           <p className='text-white/70 my-5'>We have developed a cutting-edge attendance recorder. Using face recognition, you can easily record attendance and have access to in-depth analysis and a wide range of functionalities. </p>
         </div>
 
@@ -74,15 +78,15 @@ function SignIn() {
             initialValues={{ empId: "", password: "" }}
             onSubmit={ async(values) => {
               // Alert the input values of the form that we filled
-      
+
               const payload = {...values,coords}
-             
+
               try {
              const res = await login(payload)
             if(res.err){
               alert(res.err)
-            }else{ 
-              console.log(res) 
+            }else{
+              console.log(res)
               if(res.role==="admin"){
                 navigate('/admin/AdminDashboard')
               }else{
@@ -93,7 +97,7 @@ function SignIn() {
                 console.log(error)
               }
 
-             
+
             }}
           >
             {({
