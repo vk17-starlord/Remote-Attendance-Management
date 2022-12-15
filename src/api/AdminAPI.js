@@ -47,3 +47,15 @@ export const CreateEmployeeData = async(payload)=>{
             return {err:err};
         })
 }
+
+
+export const getEmployeeAttendance = async(id , timestamp )=>{
+
+    const URL = `${baseURL}/employee/${id}/monthly-working-data?timestamp=${timestamp}`
+   
+    return await axios.get(URL).then((res)=>{
+        return res.data;
+    }).catch(()=>{
+        return {err:"error occurred"}
+    })
+}
