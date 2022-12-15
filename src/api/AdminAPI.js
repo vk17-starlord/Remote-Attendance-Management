@@ -43,6 +43,7 @@ export const CreateEmployeeData = async(payload)=>{
           return res.data;
         }
         ).catch((err)=>{
+            console.log(err)
             return {err:err};
         })
 }
