@@ -80,7 +80,7 @@ function SignIn() {
               // Alert the input values of the form that we filled
 
               const payload = {...values,coords}
-
+               console.log(payload)
               try {
              const res = await login(payload)
             if(res.err){
