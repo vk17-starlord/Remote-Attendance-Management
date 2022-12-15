@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DeleteEmployeeByID, getEmployees } from '../api/AdminAPI'
-const EmployeeContext = React.createContext()
 const AllEmployeesContext = React.createContext()
 
 
@@ -32,33 +31,16 @@ const DeleteEmployee = async(id)=>{
 const RefreshData = async()=>{
   const res = await getEmployees();
   if(res.err){
-    alert("error occurred")
+     
   }else{
     console.log(res)
     const {pageData} = res;
     UpdateEmployees(pageData)
   }
-
 }
 
 
-useEffect(() => {
-  console.log("here")
-  const getData = async()=>{
-    const res = await getEmployees();
-    if(res.err){
-      alert("error occurred")
-    }else{
-      console.log(res)
-      const {pageData} = res;
-      UpdateEmployees(pageData)
-    }
-  
-}
 
-  getData()
-
-}, []);
 
   return (
 

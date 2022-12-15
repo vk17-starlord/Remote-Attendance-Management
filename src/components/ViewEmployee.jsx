@@ -1,22 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getEmployeeByID } from '../api/AdminAPI';
+import {useParams} from 'react-router-dom';
 
 const ViewEmployee = () => {
+
+    const [Employee, setEmployee] = useState(null);
+    const {id} =useParams()
+    useEffect(() => {
+     const getData = async ()=>{
+       const res = await getEmployeeByID(id) 
+       if(res.err){
+        alert("Error occurred")
+       }else{
+        setEmployee(res)
+         console.log(res)
+    
+       }
+    
+     }
+     getData()
+     
+    }, [id]);
+
     return (
         <div className='w-full'>
-            <div className='w-full h-full bg-int'>
-                <div className="w-[75%] text-white font-inter flex justify-between items-center min-h-[40vh] mx-auto">
-                    <div className="info flex">
-                        <div className="w-24 bg-white flex justify-center items-center h-24 rounded-full">
-                            <img alt='meta' className='w-17 rounded-full object-contain h-17' src={'https://images.pexels.com/photos/3483800/pexels-photo-3483800.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'} />
-                        </div>
-                        <div className="flex flex-col mx-10 justify-center">
-                            <h1 className='font-medium text-lg '>Employee Name -  <span className='font-medium text-white/70'></span></h1>
-                            <h1 className='font-medium text-lg '>Employee Position -  <span className='font-medium text-white/70'></span></h1>
-                            <h1 className='font-medium text-lg '>Employee Salary -  <span className='font-medium text-white/70'></span></h1>
-                        </div>
-                    </div>
-                </div>
+        <div className="bg-card  w-full min-h-[25vh] ">
+            
+        </div>
+
+         <div className="w-10/12 lg:w-9/12 grid gap-5 mt-[-10vh] grid-cols-[4fr_8fr] mx-auto">
+            <div className="col w-full bg-white rounded-xl shadow-lg p-5 ">
+                  <div className="flex">
+                  <img className='w-24 h-24 object-center rounded-lg object-cover' src="https://images.pexels.com/photos/623305/pexels-photo-623305.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" alt="" />
+                  <div className="block">
+                  <h1 className='font-bold mx-5'>{Employee?.name}</h1>
+                  <h1 className='text-gray-500 mx-5 my-2'><span><i class='bx bxs-briefcase'></i></span> {Employee?.position}</h1>
+                  <h1 className='text-gray-500 mx-5 my-2'><i class='bx bxs-phone text-xl align-middle' ></i> {Employee?.phone}</h1>
+                  </div>
             </div>
+
+            </div>
+
+            <div className="col bg-white rounded-xl shadow-xl p-5  w-full">
+
+                <div className="flex justify-between">
+                <h1 className='font-bold mx-5'>Joining Date - <span className='font-medium text-gray-500'>{Employee?.joiningDate.substr(0,10)}</span></h1>
+                <h1 className='font-bold mx-5'>Employee ID - <span className='font-medium text-gray-500'>{Employee?.empId}</span></h1>
+
+                </div>
+
+
+            </div>
+
+
+
+         </div>
+            
         </div>
     )
 }

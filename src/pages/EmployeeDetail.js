@@ -4,8 +4,7 @@ import ViewEmployee from '../components/ViewEmployee'
 
 function EmployeeDetail() {
 
-  const { id } = useParams()
-
+ 
   return (
 
     <ViewEmployee/>
