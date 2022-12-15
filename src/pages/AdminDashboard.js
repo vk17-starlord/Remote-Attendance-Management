@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { useEffect } from "react";
 import { getEmployees } from "../api/AdminAPI";
@@ -12,10 +12,17 @@ function AdminDashboard() {
   const navigate = useNavigate()
 
   const{ AllEmployees , DeleteEmployee , RefreshData } = useAllEmployeeContext();
-  console.log(AllEmployees) 
-  useEffect(()=>{
-    RefreshData()
-  },[AllEmployees,RefreshData])
+  
+  
+
+ useMemo(() => {
+  const getData = async ()=>{
+    const data = RefreshData()
+     return data;
+  }
+  getData()
+ }, [])
+  
   return (
     <>
       <AdminNavbar />
