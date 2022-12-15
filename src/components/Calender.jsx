@@ -3,6 +3,8 @@ import { getEmployeeAttendance } from '../api/AdminAPI';
 
 function Calender({id}) {
 
+
+
     const currentDate = new Date();
 
     const currentMonth = currentDate.getMonth(); // Be careful! January is 0, not 1
@@ -77,6 +79,7 @@ function Calender({id}) {
   }
 
   const updateYear = (yr)=>{
+  
     setyear(yr)
     setyearText(yr)
     toggleYear()
@@ -117,14 +120,23 @@ yearText
  }
  </button>
     
-    
 
+ {
+    openYear ? <div  id="dropdownInformation" class=" ml-5 z-10 my-5 fixed overflow-scroll max-h-[50vh] w-44 bg-white rounded divide-y divide-gray-100 shadow ">
+    {
+   yearData.map((ele,index)=>{
+         return   <h1 key={index}  onClick={()=>{updateYear(ele)}} className='w-full text-blue-600 text-left text-sm   py-2 px-4 '>{ele}</h1>
+        })
+    }
+
+</div> : null
+}
 </div>
 </div>
 
 
 
-<div className="w-full grid grid-cols-4 my-10">
+<div className="w-full grid grid-cols-4  gap-2 my-10">
     {
         attendance?.map((data)=>{
             return  <div className="tile  w-full flex-col border-2 rounded-xl flex justify-center items-start border-gray-200 py-5">
