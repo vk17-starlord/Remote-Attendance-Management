@@ -9,6 +9,7 @@ import CreateEmployeForm from "./components/CreateEmployeForm";
 import EmployeeDetail from "./pages/EmployeeDetail";
 import EditEmployee from "./components/EditEmployee";
 import ResetPassword from "./components/ResetPassword";
+import AdminGuard from "./pages/AdminGuard";
 
 function App() {
 
@@ -23,14 +24,13 @@ function App() {
 
           <Route path='/' element={<SignIn />} ></Route>
           <Route path='/Register' element={<AdminLogin />} ></Route>
-          <Route path='/Register' element={<AdminDashboard />} ></Route>
+          <Route path='/admin/AdminDashboard' element={<AdminGuard><AdminDashboard /></AdminGuard>} ></Route>
           <Route path='/Dashboard' element={<Dashboard />} ></Route>
           <Route path='/admin' element={<AdminLogin />}></Route>
-          <Route path='/admin/AdminDashboard' element={<AdminDashboard />}></Route>
-          <Route path='/admin/AdminDashboard/CreateEmployeForm' element={<CreateEmployeForm />}></Route>
-          <Route path='/employeeDetail/:id' element={<EmployeeDetail />}></Route>
-          <Route path='/admin/AdminDashboard/EditEmployee/:id' element={<EditEmployee />}></Route>
-          <Route path='/admin/AdminDashboard/ResetPassword/:id' element={<ResetPassword />}></Route>
+          <Route path='/admin/AdminDashboard/CreateEmployeForm' element={<AdminGuard><CreateEmployeForm /></AdminGuard>}></Route>
+          <Route path='/employeeDetail/:id' element={<AdminGuard><EmployeeDetail /></AdminGuard>}></Route>
+          <Route path='/admin/AdminDashboard/EditEmployee/:id' element={<AdminGuard><EditEmployee /></AdminGuard>}></Route>
+          <Route path='/admin/AdminDashboard/ResetPassword/:id' element={<AdminGuard><ResetPassword /></AdminGuard>}></Route>
 
         </Routes>
       </BrowserRouter>

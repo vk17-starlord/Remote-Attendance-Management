@@ -31,12 +31,14 @@ const AdminLoginForm = () => {
                         const res = await login(payload)
                        if(res.err){
                          alert(res.err)
+                         navigate("/")
                        }else{
                          console.log(res)
                          if(res.role==="admin"){
                            navigate('/admin/AdminDashboard')
                          }else{
-                           navigate('/faceauth')
+                            alert("Please enter valid credentials")
+                            navigate("/")
                          }
 
                        }

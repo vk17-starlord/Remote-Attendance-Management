@@ -16,6 +16,7 @@ function UserAuth({children}) {
   const login = async (payload)=>{
   
     return await axios.post(`${baseURL}/auth/login`,payload).then((res)=>{
+    
         setUser(res.data)
         return res.data;
      }).catch((err)=>{
@@ -24,6 +25,8 @@ function UserAuth({children}) {
 
 
   }
+
+
 
   return (
     <UserContext.Provider value={{user , login} }>

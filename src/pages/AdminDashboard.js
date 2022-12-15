@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
-import { useEffect } from "react";
-import { getEmployees } from "../api/AdminAPI";
 import { Link, useNavigate } from "react-router-dom";
 import { useAllEmployeeContext } from "../context/EmployeeAuth";
 import { SearchByName } from "../api/AdminAPI";
@@ -26,6 +24,16 @@ function AdminDashboard() {
 
 
 
+const [searchInput, setsearchInput] = useState("");
+
+const handleSearch = async()=>{
+  const res = await SearchByName(searchInput);
+  if(res.err){
+
+  }else{
+    UpdateEmployees(res)
+  }
+}
 
 
 
@@ -62,16 +70,17 @@ function AdminDashboard() {
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 "
             placeholder="Search Employee"
+            value={searchInput}
+            onChange={(ev)=>setsearchInput(ev.target.value)}
             required
           />
           <button
-            type="submit"
+          
             className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
             onClick={
               () => {
-                const value = document.getElementById("default-search").value;
-                SearchByName(value)
-                console.log(value)
+
+                handleSearch()
 
               }
             }
