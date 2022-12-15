@@ -15,6 +15,8 @@ function AdminDashboard() {
 
 
 
+
+
  useMemo(() => {
   const getData = async ()=>{
     const data = RefreshData()
@@ -22,6 +24,8 @@ function AdminDashboard() {
   }
   getData()
  }, [])
+
+  }, [])
 
   return (
     <>

@@ -81,7 +81,7 @@ const CreateEmployeForm = () => {
           console.log(values)
           const res = await CreateEmployeeData(values)
           console.log(res)
-          if(res.error){
+          if(res.err){
             alert("Error occurred please try again")
           }else{
             alert("Employee Created Successfully !!")
