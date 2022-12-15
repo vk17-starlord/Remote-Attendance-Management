@@ -120,10 +120,10 @@ function AdminDashboard() {
                     >
                       {emp.empId}
                     </th>
-                    <td className="py-9 pr-6 flex items-center justify-center">
+                    <td className="py-9 pr-6 flex items-center justify-start">
                       <img
                         className="w-10 h-10  rounded-full"
-                        src={emp.profile}
+                        src={emp.profileUrl}
                         alt=""
                       />
                       <span className="ml-2">{emp.name}</span>
