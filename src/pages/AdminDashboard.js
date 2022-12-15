@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { getEmployees } from "../api/AdminAPI";
 import { Link, useNavigate } from "react-router-dom";
 import { useAllEmployeeContext } from "../context/EmployeeAuth";
+import { SearchByName } from "../api/AdminAPI";
+
 
 
 
@@ -11,21 +13,21 @@ function AdminDashboard() {
 
   const navigate = useNavigate()
 
-  const{ AllEmployees , DeleteEmployee , RefreshData } = useAllEmployeeContext();
+  const { AllEmployees, DeleteEmployee, RefreshData, UpdateEmployees } = useAllEmployeeContext();
 
 
-
-
-
- useMemo(() => {
-  const getData = async ()=>{
-    const data = RefreshData()
-     return data;
-  }
-  getData()
- }, [])
-
+  useMemo(() => {
+    const getData = async () => {
+      const data = RefreshData()
+      return data;
+    }
+    getData()
   }, [])
+
+
+
+
+
 
   return (
     <>
@@ -65,6 +67,14 @@ function AdminDashboard() {
           <button
             type="submit"
             className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 "
+            onClick={
+              () => {
+                const value = document.getElementById("default-search").value;
+                SearchByName(value)
+                console.log(value)
+
+              }
+            }
           >
             Search
           </button>
@@ -96,7 +106,7 @@ function AdminDashboard() {
                 </th>
                 <th scope="col" className="py-3 px-6 ml-2">
 
-                  <p className="ml-[56px]">Actions</p>
+                  <p className="ml-[70px]">Actions</p>
                 </th>
               </tr>
             </thead>
@@ -122,31 +132,37 @@ function AdminDashboard() {
                     <td className="py-4 px-6 ">{emp.position}</td>
                     <td className="py-4 px-6 ">{emp.phone}</td>
                     <td className="py-4 px-6 ">{emp.joiningDate.substring(0, 10)}</td>
-                    <td className="py-4 px-6 ">
+                    <td className="py-4 px-5 ">
 
                       <button onClick={() => {
                         console.log("edit");
                         navigate(`/admin/AdminDashboard/EditEmployee/${emp.empId}`)
-                      }} className="w-12 h-12 rounded-full bg-blue-500">
+                      }} className="w-11 h-11 rounded-full bg-blue-500">
                         <i className='bx bx-edit text-xl text-white'></i>
                       </button>
 
                       <button
 
-                       onClick={()=>{
+                        onClick={() => {
 
-                        DeleteEmployee(emp.empId)
+                          DeleteEmployee(emp.empId)
 
 
-                       }}
-                      className="w-12 mx-5 h-12 rounded-full bg-red-500">
+                        }}
+                        className="w-11 mx-5  h-11 rounded-full bg-red-500">
                         <i className='bx bxs-trash text-white text-xl'></i></button>
 
                       <button onClick={() => {
                         navigate(`/employeeDetail/${emp.empId}`)
-                      }} className="w-12  h-12 rounded-full bg-green-700">
+                      }} className="w-11  h-11 rounded-full bg-green-700">
                         <i className='bx bxs-user-detail  text-xl  text-white'></i></button>
 
+                      {/* /admin/AdminDashboard/ResetPassword */}
+                      <button onClick={() => {
+                        navigate(`/admin/AdminDashboard/ResetPassword/${emp.empId}`)
+                      }} className=" ml-5  w-12 h-12 rounded-full bg-blue-400 ">
+                        <i className='bx bx-lock-alt text-white'></i>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -156,15 +172,15 @@ function AdminDashboard() {
         </div>
       </div>
       <div className="justify-center  flex mb-2">
-       <Link to={"/admin/AdminDashboard/CreateEmployeForm"}>
-       <button
-          // onClick={ToEmployeCreate}
-          type="button"
-          className="fixed right-10 bottom-10 text-blue-700 border border-blue-700 bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center inline-flex items-center "
-        >
-          <i className="bx bx-plus  text-blue-200"></i>
-        </button>
-       </Link>
+        <Link to={"/admin/AdminDashboard/CreateEmployeForm"}>
+          <button
+            // onClick={ToEmployeCreate}
+            type="button"
+            className="fixed right-10 bottom-10 text-blue-700 border border-blue-700 bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-5 text-center inline-flex items-center "
+          >
+            <i className="bx bx-plus  text-blue-200"></i>
+          </button>
+        </Link>
       </div>
     </>
   );

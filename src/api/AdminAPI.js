@@ -1,61 +1,82 @@
 import axios from "axios";
 import { baseURL } from "./config";
 
-export const getEmployees = async()=>{
+export const getEmployees = async () => {
 
-   return await axios.get(`${baseURL}/employee/`).then((res)=>{
+    return await axios.get(`${baseURL}/employee/`).then((res) => {
         return res.data
-    }).catch((err)=>{
-        return {err:err}
+    }).catch((err) => {
+        return { err: err }
     })
 
 }
 
 
 
-export const getEmployeeByID = async(id)=>{
-    return await axios.get(`${baseURL}/employee/${id}`).then((res)=>{
+export const getEmployeeByID = async (id) => {
+    return await axios.get(`${baseURL}/employee/${id}`).then((res) => {
         return res.data
-    }).catch((err)=>{
-        return {err:err}
+    }).catch((err) => {
+        return { err: err }
     })
 }
 
 
-export const DeleteEmployeeByID = async(id)=>{
-    return await axios.delete(`${baseURL}/employee/${id}`).then((res)=>{
+export const DeleteEmployeeByID = async (id) => {
+    return await axios.delete(`${baseURL}/employee/${id}`).then((res) => {
         return res.data
-    }).catch((err)=>{
-        return {err:err}
+    }).catch((err) => {
+        return { err: err }
     })
 }
 
 
-export const CreateEmployeeData = async(payload)=>{
-     console.log(payload,"here")
-     return await axios.post(`${baseURL}/employee/register`, payload, {
+export const CreateEmployeeData = async (payload) => {
+    console.log(payload, "here")
+    return await axios.post(`${baseURL}/employee/register`, payload, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data'
         }
-      })
+    })
         .then(res => {
             console.log(res)
-          return res.data;
+            return res.data;
         }
-        ).catch((err)=>{
+        ).catch((err) => {
             console.log(err)
-            return {err:err};
+            return { err: err };
         })
 }
 
 
-export const getEmployeeAttendance = async(id , timestamp )=>{
+export const getEmployeeAttendance = async (id, timestamp) => {
 
     const URL = `${baseURL}/employee/${id}/monthly-working-data?timestamp=${timestamp}`
-   
-    return await axios.get(URL).then((res)=>{
+
+    return await axios.get(URL).then((res) => {
         return res.data;
-    }).catch(()=>{
-        return {err:"error occurred"}
+    }).catch(() => {
+        return { err: "error occurred" }
+    })
+}
+
+export const ResetPasswordFunc = async (payload) => {
+    return await axios.post(`${baseURL}/auth/reset-password`, payload)
+
+        .then(res => {
+            console.log(res)
+            return res.data;
+        })
+        .catch(() => {
+            return { err: "error occurred" }
+        })
+}
+
+export const SearchByName = async (payload) => {
+    return await axios.get(`${baseURL}/employee/search/name?namePattern=${payload}`).then((res) => {
+        console.log(res.data)
+        return res.data;
+    }).catch(() => {
+        return { err: "error occurred" }
     })
 }
