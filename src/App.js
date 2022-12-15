@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import CreateEmployeForm from "./components/CreateEmployeForm";
 import EmployeeDetail from "./pages/EmployeeDetail";
 import EditEmployee from "./components/EditEmployee";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/admin/AdminDashboard/CreateEmployeForm' element={<CreateEmployeForm />}></Route>
           <Route path='/employeeDetail/:id' element={<EmployeeDetail />}></Route>
           <Route path='/admin/AdminDashboard/EditEmployee/:id' element={<EditEmployee />}></Route>
+          <Route path='/admin/AdminDashboard/ResetPassword/:id' element={<ResetPassword />}></Route>
 
         </Routes>
       </BrowserRouter>
