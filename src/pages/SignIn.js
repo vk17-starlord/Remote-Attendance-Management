@@ -79,7 +79,7 @@ function SignIn() {
             onSubmit={ async(values) => {
               // Alert the input values of the form that we filled
 
-              const payload = {...values,coords}
+              const payload = {...values}
                console.log(payload)
               try {
              const res = await login(payload)
@@ -95,6 +95,7 @@ function SignIn() {
             }
               } catch (error) {
                 console.log(error)
+                alert("error occurred")
               }
 
 

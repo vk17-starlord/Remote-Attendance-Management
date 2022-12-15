@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import DashboardWebcam from "../components/webcam/DashboardWebcam"
 import { useUserContext } from "../context/UserAuth"
-import {baseURL} from '../api/config';
+import {baseURL, headers} from '../api/config';
 import EmployeeCard from "../components/EmployeeCard";
 import logo from "../assets/R.A.M.S-1(1).png"
 
@@ -18,7 +18,8 @@ function Dashboard() {
   useEffect(() => {
 
       const getDetail = ()=>{
-      axios.get(`${baseURL}/employee/${user.empId}`).then((res)=>{
+        
+      axios.get(`${baseURL}/employee/${user.empId}`,{headers:headers}).then((res)=>{
         console.log(res.data)
         setemployee(res.data)
       })

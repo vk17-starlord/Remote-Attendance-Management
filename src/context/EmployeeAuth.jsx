@@ -18,7 +18,7 @@ const [AllEmployees, setAllEmployees] = useState(null);
 const UpdateEmployees= (data)=>{
   setAllEmployees(data)
 }
-
+  
 const DeleteEmployee = async(id)=>{
   const res =await DeleteEmployeeByID(id)
   if(res){

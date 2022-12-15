@@ -4,7 +4,7 @@ import "./Webcam.css";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { baseURL } from "../../api/config";
+import { baseURL , headers } from "../../api/config";
 import { useUserContext } from "../../context/UserAuth";
 import Dashboard from "../../pages/Dashboard";
 
@@ -37,10 +37,12 @@ function WebcamCapture() {
     const payload = {
       empId: user.empId,
       image: image,
+      verifyOnly:true
+      
     };
     console.log(payload);
     axios
-      .post(`${baseURL}/employee/verify-capture`, payload)
+      .post(`${baseURL}/employee/verify-capture`, payload , {headers:headers})
       .then((ele) => {
         console.log(ele.data);
         const { isMatch } = ele.data;

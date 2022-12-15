@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import  { useContext, useState } from 'react'
 import {baseURL} from '../api/config';
 const UserContext = React.createContext()
@@ -16,8 +16,17 @@ function UserAuth({children}) {
   const login = async (payload)=>{
   
     return await axios.post(`${baseURL}/auth/login`,payload).then((res)=>{
+
+    const {token,empId} = res.data;
     
+    
+    sessionStorage.setItem("token",token.toString());
+
+
+      console.log(res.data)
         setUser(res.data)
+
+
         return res.data;
      }).catch((err)=>{
       return {err:err.response.data.message}
@@ -25,6 +34,7 @@ function UserAuth({children}) {
 
 
   }
+
 
 
 
