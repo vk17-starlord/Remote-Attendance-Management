@@ -167,7 +167,6 @@ const CreateEmployeForm = () => {
                     onChange={(e) => {
                       const maindate = new Date(e.target.value);
                       const DATE = maindate.toISOString();
-                      console.log(DATE.toString());
                       setFieldValue('joiningDate', DATE);
 
                     }}

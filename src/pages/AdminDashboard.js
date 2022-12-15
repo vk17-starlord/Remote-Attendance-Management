@@ -12,8 +12,8 @@ function AdminDashboard() {
   const navigate = useNavigate()
 
   const{ AllEmployees , DeleteEmployee , RefreshData } = useAllEmployeeContext();
-  
-  
+
+
 
  useMemo(() => {
   const getData = async ()=>{
@@ -22,7 +22,7 @@ function AdminDashboard() {
   }
   getData()
  }, [])
-  
+
   return (
     <>
       <AdminNavbar />
@@ -90,8 +90,9 @@ function AdminDashboard() {
                 <th scope="col" className="py-3 px-6">
                   Employee Join Date
                 </th>
-                <th scope="col" className="py-3 px-6">
-                  Action
+                <th scope="col" className="py-3 px-6 ml-2">
+
+                  <p className="ml-[56px]">Actions</p>
                 </th>
               </tr>
             </thead>
@@ -101,7 +102,7 @@ function AdminDashboard() {
                   <tr className="bg-white border-b font-[600]" key={emp.empId}>
                     <th
                       scope="row"
-                      className="font-medium  py-4 px-6  text-gray-900 whitespace-nowrap "
+                      className="font-[600] py-4 px-6  text-gray-900 whitespace-nowrap "
                     >
                       {emp.empId}
                     </th>
@@ -126,13 +127,13 @@ function AdminDashboard() {
                         <i className='bx bx-edit text-xl text-white'></i>
                       </button>
 
-                      <button 
-                      
+                      <button
+
                        onClick={()=>{
 
                         DeleteEmployee(emp.empId)
-                        
-                        
+
+
                        }}
                       className="w-12 mx-5 h-12 rounded-full bg-red-500">
                         <i className='bx bxs-trash text-white text-xl'></i></button>
