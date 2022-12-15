@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getEmployeeByID } from '../api/AdminAPI';
 import {useParams} from 'react-router-dom';
+import Calender from './Calender';
 
 const ViewEmployee = () => {
 
@@ -49,6 +50,7 @@ const ViewEmployee = () => {
 
                 </div>
 
+               <Calender id={id}></Calender>
 
             </div>
 

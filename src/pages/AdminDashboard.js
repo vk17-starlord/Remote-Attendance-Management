@@ -13,7 +13,7 @@ function AdminDashboard() {
 
   const{ AllEmployees , DeleteEmployee , RefreshData } = useAllEmployeeContext();
   
-  
+
 
  useMemo(() => {
   const getData = async ()=>{
@@ -21,7 +21,7 @@ function AdminDashboard() {
      return data;
   }
   getData()
- }, [])
+  }, [])
   
   return (
     <>
