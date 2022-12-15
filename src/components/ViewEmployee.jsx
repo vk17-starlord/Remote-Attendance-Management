@@ -30,7 +30,7 @@ const ViewEmployee = () => {
         </div>
 
          <div className="w-10/12 lg:w-9/12 grid gap-5 mt-[-10vh] grid-cols-[4fr_8fr] mx-auto">
-            <div className="col w-full bg-white rounded-xl shadow-lg p-5 ">
+            <div className="col h-max  w-full bg-white rounded-xl shadow-lg p-5 ">
                   <div className="flex">
                   <img className='w-24 h-24 object-center rounded-lg object-cover' src="https://images.pexels.com/photos/623305/pexels-photo-623305.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" alt="" />
                   <div className="block">
