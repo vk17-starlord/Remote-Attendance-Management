@@ -37,10 +37,8 @@ function Calender({id}) {
     const timeStamp = d.toISOString();
     const res = await getEmployeeAttendance(id,timeStamp);
     if(res.err){
-        console.log(res.err)
     }else
     {
-        console.log(res)
         setattendance(res)
     }
  
@@ -79,9 +77,7 @@ function Calender({id}) {
   }
 
   const updateYear = (yr)=>{
-    console.log(yr)
     setyear(yr)
-    console.log(yr)
     setyearText(yr)
     toggleYear()
   }

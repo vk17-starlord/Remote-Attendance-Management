@@ -13,7 +13,7 @@ function AdminDashboard() {
 
   const { AllEmployees, DeleteEmployee, RefreshData, UpdateEmployees } = useAllEmployeeContext();
 
-
+  
   useMemo(() => {
     const getData = async () => {
       const data = RefreshData()
@@ -132,7 +132,7 @@ const handleSearch = async()=>{
                     <td className="py-9 pr-6 flex items-center justify-center">
                       <img
                         className="w-10 h-10  rounded-full"
-                        src={emp.profile}
+                        src={emp.profileUrl}
                         alt=""
                       />
                       <span className="ml-2">{emp.name}</span>
@@ -144,7 +144,6 @@ const handleSearch = async()=>{
                     <td className="py-4 px-5 ">
 
                       <button onClick={() => {
-                        console.log("edit");
                         navigate(`/admin/AdminDashboard/EditEmployee/${emp.empId}`)
                       }} className="w-11 h-11 rounded-full bg-blue-500">
                         <i className='bx bx-edit text-xl text-white'></i>

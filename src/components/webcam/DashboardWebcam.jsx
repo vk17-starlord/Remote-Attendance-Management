@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
 import { clearInterval, setInterval } from "worker-timers";
 import { useUserContext } from "../../context/UserAuth";
-import { baseURL } from "../../api/config";
-
+import { baseURL, headers } from "../../api/config";
+import { useGeolocated } from "react-geolocated";
 const videoConstraints = {
   width: 500,
   height: 500,
@@ -13,6 +13,16 @@ const videoConstraints = {
 };
 
 function DashboardWebcam({ images, setimages }) {
+
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+
+    useGeolocated({
+      positionOptions: {
+        enableHighAccuracy: false,
+      },
+      userDecisionTimeout: 5000,
+    });
+
   const webcamRef = React.useRef(null);
 
   const { user } = useUserContext();
@@ -38,20 +48,16 @@ function DashboardWebcam({ images, setimages }) {
 
   useEffect(() => {
     const VerifyFace = (imgSrc) => {
-      console.log(user.empId);
-  
       const payload = {
         empId: user.empId,
         image: imgSrc,
+        cords:"location" 
       };
   
-      console.log(payload);
       axios
-        .post(`${baseURL}/employee/verify-capture`, payload)
+        .post(`${baseURL}/employee/verify-capture`, payload,{headers:headers})
         .then((ele) => {
-          console.log(ele.data);
         }).catch((err) => {
-          console.log(err,"Error");
           alert("Error occurred")
           navigate("/");
         });
@@ -60,7 +66,6 @@ function DashboardWebcam({ images, setimages }) {
     if (startTimer) {
       var intervalId = setInterval(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        console.log("here")
         VerifyFace(imageSrc)
       }, interval);
 

@@ -9,14 +9,6 @@ import image from "../assets/R.A.M.S-1(1).png"
 
 function SignIn() {
 
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-
-    useGeolocated({
-      positionOptions: {
-        enableHighAccuracy: false,
-      },
-      userDecisionTimeout: 5000,
-    });
 
 
   const schema = Yup.object().shape({
@@ -33,14 +25,7 @@ function SignIn() {
   return (
     <div className='w-full min-h-screen grid-cols-1 grid md:grid-cols-2'>
 
-      {
-        !isGeolocationAvailable ? <div className='w-screen z-50 flex-col fixed min-h-screen bg-white flex justify-center items-center'>
-
-          <img className='w-[30vw] object-cover h-[30vw] rounded-full' src="https://cdn.dribbble.com/users/945601/screenshots/14570188/media/086d0d7dbdaead7a762fa1f442e50616.png?compress=1&resize=1200x900&vertical=top" alt="" />
-          <h1>Your Browser Doesn't Support Geolocation !! Please Use Another Browser</h1>
-        </div> : null
-      }
-
+     
       <div className="col text-white  bg-[#3c37ff] flex justify-between items-start flex-col p-10 w-full min-h-screen">
 
         <div className="flex justify-start items-center">
@@ -80,13 +65,11 @@ function SignIn() {
               // Alert the input values of the form that we filled
 
               const payload = {...values}
-               console.log(payload)
               try {
              const res = await login(payload)
             if(res.err){
               alert(res.err)
             }else{
-              console.log(res)
               if(res.role==="admin"){
                 navigate('/admin/AdminDashboard')
               }else{
@@ -94,7 +77,6 @@ function SignIn() {
               }
             }
               } catch (error) {
-                console.log(error)
                 alert("error occurred")
               }
 

@@ -4,8 +4,7 @@ import {useUserContext} from '../context/UserAuth';
 
 function AdminGuard({children}) {
     const{ user} = useUserContext()
-    console.log(user)
-   
+
     if(user?.role!=="admin" || user==={}){
        return <Navigate to="/admin"></Navigate>
     }

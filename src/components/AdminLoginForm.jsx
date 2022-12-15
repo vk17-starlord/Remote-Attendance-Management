@@ -33,7 +33,6 @@ const AdminLoginForm = () => {
                          alert(res.err)
                          navigate("/")
                        }else{
-                         console.log(res)
                          if(res.role==="admin"){
                            navigate('/admin/AdminDashboard')
                          }else{
@@ -43,7 +42,6 @@ const AdminLoginForm = () => {
 
                        }
                          } catch (error) {
-                           console.log(error)
                          }
 
 

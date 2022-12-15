@@ -17,13 +17,12 @@ function UserAuth({children}) {
   
     return await axios.post(`${baseURL}/auth/login`,payload).then((res)=>{
 
-    const {token,empId} = res.data;
+    const {token} = res.data;
     
     
-    sessionStorage.setItem("token",token.toString());
+    localStorage.setItem("token",token.toString());
+     
 
-
-      console.log(res.data)
         setUser(res.data)
 
 
