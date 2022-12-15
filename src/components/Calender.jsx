@@ -117,16 +117,7 @@ yearText
  }
  </button>
     
-{
-    openYear ? <div  id="dropdownInformation" class="ml-5 z-10 my-5 fixed overflow-scroll max-h-[50vh]  w-44 bg-white rounded divide-y divide-gray-100 shadow ">
-    {
-       yearData.map((ele,index)=>{
-         return   <h1 key={index}  onClick={()=>{updateYear(ele)}} className='w-full text-blue-600 text-left text-sm   py-2 px-4 '>{ele}</h1>
-        })
-    }
-
-</div> : null
-}
+    
 
 </div>
 </div>
