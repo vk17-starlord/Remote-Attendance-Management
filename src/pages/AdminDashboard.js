@@ -129,9 +129,9 @@ const handleSearch = async()=>{
                     >
                       {emp.empId}
                     </th>
-                    <td className="py-9 pr-6 flex items-center justify-center">
+                    <td className="py-9 pr-6 flex items-center justify-start">
                       <img
-                        className="w-10 h-10  rounded-full"
+                        className="w-10 h-10 object-cover object-top   rounded-full"
                         src={emp.profileUrl}
                         alt=""
                       />
