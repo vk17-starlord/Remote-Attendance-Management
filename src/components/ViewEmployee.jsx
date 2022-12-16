@@ -14,7 +14,6 @@ const ViewEmployee = () => {
         alert("Error occurred")
        }else{
         setEmployee(res)
-         console.log(res)
     
        }
     

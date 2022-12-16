@@ -28,9 +28,7 @@ const ResetPassword = () => {
                 initialValues={{ empId: "", password: "" }}
                 onSubmit={async (values) => {
                     // Alert the input values of the form that we filled
-                    console.log(values)
                     const res = await ResetPasswordFunc(values,id)
-                    console.log(res)
                     if (res.err) {
                         alert("Error occurred please try again")
                     } else {

@@ -4,7 +4,7 @@ import "./Webcam.css";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { baseURL } from "../../api/config";
+import { baseURL , headers } from "../../api/config";
 import { useUserContext } from "../../context/UserAuth";
 import Dashboard from "../../pages/Dashboard";
 
@@ -26,23 +26,22 @@ function WebcamCapture() {
 
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
-    console.log(imageSrc);
     setimage(imageSrc);
     handleOpen();
   }, [webcamRef]);
 
   const handleFaceVerify = async () => {
-    console.log(user.empId);
-
+    
     const payload = {
       empId: user.empId,
       image: image,
+      verifyOnly:true
+      
     };
-    console.log(payload);
+   
     axios
-      .post(`${baseURL}/employee/verify-capture`, payload)
+      .post(`${baseURL}/employee/verify-capture`, payload , {headers:headers})
       .then((ele) => {
-        console.log(ele.data);
         const { isMatch } = ele.data;
         if (isMatch) {
           navigate("/dashboard");
@@ -52,7 +51,6 @@ function WebcamCapture() {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("error occurred")
         navigate("/");
       });

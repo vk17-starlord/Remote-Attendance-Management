@@ -1,5 +1,7 @@
 import axios from "axios";
-import { baseURL } from "./config";
+import { baseURL , headers  , MultFormHeaders } from "./config";
+
+
 
 export const getEmployees = async () => {
 
@@ -32,18 +34,13 @@ export const DeleteEmployeeByID = async (id) => {
 
 
 export const CreateEmployeeData = async (payload) => {
-    console.log(payload, "here")
     return await axios.post(`${baseURL}/employee/register`, payload, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
+        headers: MultFormHeaders
     })
         .then(res => {
-            console.log(res)
             return res.data;
         }
         ).catch((err) => {
-            console.log(err)
             return { err: err };
         })
 }
@@ -61,10 +58,9 @@ export const getEmployeeAttendance = async (id, timestamp) => {
 }
 
 export const ResetPasswordFunc = async (payload) => {
-    return await axios.post(`${baseURL}/auth/reset-password`, payload)
+    return await axios.post(`${baseURL}/auth/reset-password`, payload )
 
         .then(res => {
-            console.log(res)
             return res.data;
         })
         .catch(() => {
@@ -72,11 +68,22 @@ export const ResetPasswordFunc = async (payload) => {
         })
 }
 
+
 export const SearchByName = async (payload) => {
     return await axios.get(`${baseURL}/employee/search/name?namePattern=${payload}`).then((res) => {
-        console.log(res.data)
         return res.data;
     }).catch(() => {
         return { err: "error occurred" }
     })
+}
+
+
+export const UpdateEmployee = async (payload) => {
+    return await axios.put(`${baseURL}/employee/${payload.empId}`, payload )
+        .then(res => {
+            return res.data;
+        })
+        .catch(() => {
+            return { err: "error occurred" }
+        })
 }
