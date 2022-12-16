@@ -30,7 +30,7 @@ function DashboardWebcam({ images, setimages }) {
   const navigate = useNavigate();
   const [timerID, settimerID] = useState(null);
 
-  const [interval, setinterval] = useState(5000);
+  const [interval, setinterval] = useState(60000);
 
   const toggleTimer = () => {
     setstartTimer(!startTimer);
@@ -64,7 +64,9 @@ function DashboardWebcam({ images, setimages }) {
     };
 
     if (startTimer) {
+  
       var intervalId = setInterval(() => {
+        console.log("sending image")
         const imageSrc = webcamRef.current.getScreenshot();
         VerifyFace(imageSrc)
       }, interval);

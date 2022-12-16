@@ -114,7 +114,7 @@ function Calender({id}) {
 
 </div>
 <div className="block">
-<button onClick={()=>toggleYear()} id=" dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-blue-600 mx-5 bg-blue-200 hover:bg-blue-800    font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-44  dark:hover:bg-blue-500 hover:text-white " type="button">
+<button onClick={()=>toggleYear()} id=" dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-blue-600  bg-blue-200 hover:bg-blue-800    font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center w-44  dark:hover:bg-blue-500 hover:text-white " type="button">
  {
 yearText
  }
@@ -122,7 +122,7 @@ yearText
     
 
  {
-    openYear ? <div  id="dropdownInformation" class=" ml-5 z-10 my-5 fixed overflow-scroll max-h-[50vh] w-44 bg-white rounded divide-y divide-gray-100 shadow ">
+    openYear ? <div  id="dropdownInformation" class=" z-10 my-5 fixed overflow-scroll max-h-[50vh] w-44 bg-white rounded divide-y divide-gray-100 shadow ">
     {
    yearData.map((ele,index)=>{
          return   <h1 key={index}  onClick={()=>{updateYear(ele)}} className='w-full text-blue-600 text-left text-sm   py-2 px-4 '>{ele}</h1>
@@ -142,7 +142,7 @@ yearText
             return  <div className="tile  w-full flex-col border-2 rounded-xl flex justify-center items-start border-gray-200 py-5">
        
                <h1 className='font-bold mx-2 text-black text-sm'>Date - <span className='text-gray-500 font-medium'> {data.createdAt.substr(0,10)}</span></h1>
-               <h1 className='font-bold mx-2 text-black text-sm'>Time Spent - <span className='text-gray-500 font-medium'> {data.totalHours}</span></h1>
+               <h1 className='font-bold mx-2 text-black text-sm'>Time Spent - <span className='text-gray-500 font-medium'> {data.totalHours.toFixed(3)}</span></h1>
        
             </div>
         })
