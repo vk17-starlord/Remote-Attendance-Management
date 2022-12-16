@@ -31,7 +31,7 @@ const ViewEmployee = () => {
          <div className="w-10/12 lg:w-9/12 grid gap-5 mt-[-10vh] grid-cols-[4fr_8fr] mx-auto">
             <div className="col h-max  w-full bg-white rounded-xl shadow-lg p-5 ">
                   <div className="flex">
-                  <img className='w-24 h-24 object-center rounded-lg object-cover' src="https://images.pexels.com/photos/623305/pexels-photo-623305.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load" alt="" />
+                  <img className='w-24 h-24 object-top rounded-lg object-cover ' src={Employee?.profileUrl} alt="" />
                   <div className="block">
                   <h1 className='font-bold mx-5'>{Employee?.name}</h1>
                   <h1 className='text-gray-500 mx-5 my-2'><span><i class='bx bxs-briefcase'></i></span> {Employee?.position}</h1>

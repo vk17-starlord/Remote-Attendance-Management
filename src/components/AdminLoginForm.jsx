@@ -39,9 +39,12 @@ const AdminLoginForm = () => {
                             alert("Please enter valid credentials")
                             navigate("/")
                          }
-
+                         console.log(res)
                        }
                          } catch (error) {
+
+                            console.log(error)
+
                          }
 
 
